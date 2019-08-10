@@ -4,6 +4,7 @@
 Stoneflower Harvest is a game created for the 12th Godot Wild Jam.  It is based on the following theme:
 
  > Pick at least 2 out of the 3 words below. You may use all 3 if you wish, but you must use at least 2.
+ >
  > Chain | Destruction | Harvest
 
 As the annual Golemburg Stoneflower Festival approaches, you must harvest stoneflowers for the town... with EXPLOSIONS!  Chain together bundles of dynamite in the most efficient way possible to get the most stoneflowers for your neighbors to feast on.
