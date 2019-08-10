@@ -8,7 +8,7 @@ This game was created for the [12th Godot Wild Jam](https://itch.io/jam/godot-wi
  > 
  > Chain | Destruction | Harvest
 
-All code and assets are created by myself and are free to use under the GNU license, with the following exceptions:
+All code and assets are created by myself and are free to use under the MIT license, with the following exceptions:
 
   Jugger Rock font by [Iconian Fonts](https://www.iconian.com)
   Stone Hinge font by [Typadelic](https://www.fontspace.com/typadelic)
