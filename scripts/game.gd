@@ -23,9 +23,8 @@ func rand_coords():
 
 # Callback function to draw a line between two clusters
 func connect_clusters(src_cluster, dest_cluster):
-
 	var cable = Line2D.new()
-	cable.add_point(src_cluster.rect_position)
-	cable.add_point(dest_cluster.rect_position)
+	cable.add_point(src_cluster.rect_position + src_cluster.rect_size * src_cluster.rect_scale / 2.0)
+	cable.add_point(dest_cluster.rect_position + dest_cluster.rect_size * dest_cluster.rect_scale / 2.0)
 	cable.default_color = Color(0, 0, 0)
 	call_deferred("add_child", cable)
