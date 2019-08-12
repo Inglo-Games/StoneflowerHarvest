@@ -11,7 +11,7 @@ var clusters = []
 func _ready():
 	clusters.append($ui_layer/plunger_btn)
 	generate_clusters(5)
-	SJTE.sjte(len(clusters)-1)
+	calculate_min_path()
 
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):
@@ -45,11 +45,20 @@ func calculate_min_path():
 	
 	# Use Steinhaus-Johnson-Trotter alg to generate all paths
 	var permutations = SJTE.sjte(len(clusters)-1)
+	for list in permutations:
+		list.push_front(0)
 	
 	# Iterate over all paths that start at 0, keeping track of current minimum
 	# See Steinhaus-Johnson-Trotter algorithm
 	var min_path = []
 	var min_length = INF
+	for path in permutations:
+		var length = calculate_path_length(dists, path)
+		if length < min_length:
+			min_length = length
+			min_path = path
+	print("Shortest path: " + str(min_path))
+	print("Length: " + str(min_length))
 
 # Get the length of a given path
 func calculate_path_length(length_table, path):
