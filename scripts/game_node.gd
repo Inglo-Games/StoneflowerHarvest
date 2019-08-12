@@ -4,6 +4,8 @@ extends Control
 # (i.e., the plunger icon and flower clusters)
 class_name GameNode
 
+onready var GameRoot = get_node("/root/game_world")
+
 var available_connections
 var max_connections
 
@@ -32,7 +34,7 @@ func can_drop_data(position, data):
 
 func drop_data(position, data):
 	print("Got some dropped data!")
-	get_parent().connect_clusters(data, self)
+	GameRoot.connect_clusters(data, self)
 	self.remove_conn()
 	data.remove_conn()
 
