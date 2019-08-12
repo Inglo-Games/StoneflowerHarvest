@@ -40,6 +40,7 @@ func calculate_min_path():
 	for i in range(len(clusters)):
 		dists.append([])
 		for j in range(len(clusters)):
+			dists[i].append(0)
 			dists[i][j] = clusters[i].rect_position.distance_to(
 					clusters[j].rect_position)
 	
