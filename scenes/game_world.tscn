@@ -17,9 +17,9 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="line_layer" type="CanvasLayer" parent="."]
-layer = -1
 
 [node name="ui_layer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="plunger_btn" type="Control" parent="ui_layer"]
 margin_left = 40.0

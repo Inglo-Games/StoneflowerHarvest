@@ -1,6 +1,6 @@
 extends Node2D
 
-const Cluster = preload("flower_cluster.gd")
+const Cluster = preload("res://scenes/cluster.tscn")
 const Connection = preload("connection.gd")
 
 const SJTE = preload("sjte_alg.gd")
@@ -17,7 +17,7 @@ func _ready():
 func generate_clusters(num):
 	# warning-ignore:unused_variable
 	for i in range(num):
-		var new_cluster = Cluster.new()
+		var new_cluster = Cluster.instance()
 		new_cluster.rect_position = rand_coords()
 		clusters.append(new_cluster)
 		call_deferred("add_child", new_cluster)
