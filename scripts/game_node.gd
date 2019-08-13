@@ -8,6 +8,11 @@ onready var GameRoot = get_node("/root/game_world")
 
 var available_connections
 var max_connections
+var node_id
+var connected_nodes
+
+func _ready():
+	connected_nodes = []
 
 func get_class():
 	return "GameNode"
@@ -37,6 +42,8 @@ func drop_data(position, data):
 	GameRoot.connect_clusters(data, self)
 	self.remove_conn()
 	data.remove_conn()
+	connected_nodes.append(data.node_id)
+	data.connected_nodes.append(node_id)
 
 func get_drag_data(position):
 	print("Dropping data...")

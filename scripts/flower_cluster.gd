@@ -4,9 +4,9 @@ extends GameNode
 class_name Cluster
 
 func _ready():
-	
 	max_connections = 2
 	available_connections = 2
-	
-	# Get input
 	set_process_input(true)
+
+func set_id(num):
+	node_id = num
