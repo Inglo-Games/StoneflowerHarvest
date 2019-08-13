@@ -5,6 +5,9 @@ const Connection = preload("connection.gd")
 
 const SJTE = preload("sjte_alg.gd")
 
+# Minimum distance allowed between clusters in pixels
+const dist_threshold = 180
+
 # List of all flower clusters in the level
 var clusters = []
 
@@ -25,7 +28,13 @@ func generate_clusters(num):
 # Generate a set of random coordinates within the screen
 func rand_coords():
 	var win = get_viewport().size
-	return Vector2(rand_range(0.1, 0.9) * win.x, rand_range(0.1, 0.9) * win.y)
+	var temp_pos = Vector2(rand_range(0.1, 0.9) * win.x, rand_range(0.1, 0.9) * win.y)
+	
+	# Make sure new cluster isn't too close to others
+	for c in clusters:
+		if temp_pos.distance_to(c.rect_position) < dist_threshold:
+			temp_pos = rand_coords()
+	return temp_pos
 
 # Callback function to draw a line between two clusters
 func connect_clusters(src_cluster, dest_cluster):
@@ -50,7 +59,6 @@ func calculate_min_path():
 		list.push_front(0)
 	
 	# Iterate over all paths that start at 0, keeping track of current minimum
-	# See Steinhaus-Johnson-Trotter algorithm
 	var min_path = []
 	var min_length = INF
 	for path in permutations:
