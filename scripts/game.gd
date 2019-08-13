@@ -11,6 +11,10 @@ const dist_threshold = 180
 # List of all flower clusters in the level
 var clusters = []
 
+# Smallest path through the clusters and its length
+var min_path = []
+var min_len = -1
+
 func _ready():
 	clusters.append($ui_layer/plunger_btn)
 	generate_clusters(5)
@@ -18,10 +22,10 @@ func _ready():
 
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):
-	# warning-ignore:unused_variable
 	for i in range(num):
 		var new_cluster = Cluster.instance()
 		new_cluster.rect_position = rand_coords()
+		new_cluster.set_id(i+1)
 		clusters.append(new_cluster)
 		call_deferred("add_child", new_cluster)
 
@@ -66,6 +70,9 @@ func calculate_min_path():
 		if length < min_length:
 			min_length = length
 			min_path = path
+	
+	self.min_path = min_path
+	self.min_len = min_length
 	print("Shortest path: " + str(min_path))
 	print("Length: " + str(min_length))
 
@@ -75,3 +82,27 @@ func calculate_path_length(length_table, path):
 	for i in range(len(path)-1):
 		length += length_table[path[i]][path[i+1]]
 	return length
+
+# See if current path is the shortest path possibled
+func check_solution():
+	
+	# Get the path drawn by the user, starting from the plunger
+	var curr_path = [0]
+	if len(clusters[0].connected_nodes) > 0:
+		var next = clusters[0].connected_nodes[0]
+		for i in range(len(clusters)-1):
+			curr_path.append(next)
+			var conns = clusters[next].connected_nodes
+			conns.erase(curr_path[i])
+			if len(conns) > 0:
+				next = conns[0]
+		print("Current path: " + str(curr_path))
+	
+	# Check that against the saved min path
+	if curr_path == min_path:
+		print("Correct!")
+		var popup = AcceptDialog.new()
+		popup.popup_centered_minsize(Vector2(50, 50))
+		popup.get_label().text = "Correct!"
+		add_child(popup)
+		popup.show()
