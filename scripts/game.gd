@@ -15,6 +15,9 @@ var clusters = []
 var min_path = []
 var min_len = -1
 
+# Create or destroy connections mode
+var conn_mode = "create"
+
 func _ready():
 	clusters.append($ui_layer/plunger_btn)
 	generate_clusters(5)
