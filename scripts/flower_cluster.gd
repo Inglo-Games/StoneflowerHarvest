@@ -10,3 +10,15 @@ func _ready():
 
 func set_id(num):
 	node_id = num
+
+func fire_explosion():
+	# Display explosion effect
+	$expl_particles.emitting = true
+	
+	# Remove relevant sprites when they're hidden
+	$dynamite.visible = false
+	$stem01.visible = false
+	$stem02.visible = false
+	$stem03.visible = false
+	$stem04.visible = false
+	$AnimationPlayer.play("fall")

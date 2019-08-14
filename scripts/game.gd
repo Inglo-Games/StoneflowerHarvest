@@ -114,9 +114,5 @@ func check_solution():
 	
 	# Check that against the saved min path
 	if curr_path == min_path:
-		print("Correct!")
-		var popup = AcceptDialog.new()
-		popup.popup_centered_minsize(Vector2(50, 50))
-		popup.get_label().text = "Correct!"
-		add_child(popup)
-		popup.show()
+		for cluster in clusters:
+			cluster.fire_explosion()

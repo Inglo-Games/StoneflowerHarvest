@@ -14,3 +14,7 @@ func _ready():
 func check_solution(ev):
 	if ev is InputEventMouseButton and not ev.pressed:
 		GameRoot.check_solution()
+
+# Function only exists for simplicity in check_solution function
+func fire_explosion():
+	pass
