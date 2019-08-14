@@ -9,3 +9,5 @@ func destroy_all_conns(event):
 		var lines = get_node("/root/game_world/line_layer").get_children()
 		for line in lines:
 			line.destroy()
+		var world = get_node("/root/game_world")
+		get_node("/root/game_world/ui_layer/length_label").text = str("%.2f" % world.min_len)
