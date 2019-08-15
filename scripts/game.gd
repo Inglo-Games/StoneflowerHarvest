@@ -24,18 +24,33 @@ var min_len = -1
 var remaining_len = -1
 
 func _ready():
-	clusters.append($ui_layer/plunger_btn)
-	generate_clusters(5)
-	calculate_min_path()
+	#generate_clusters(3)
+	pass
+
+# Remove all lines and nodes in this level
+func clear_level():
+	for line in $line_layer.get_children():
+		line.destroy()
+	for i in range(len(clusters)-1):
+		clusters[i+1].visible = false
+		clusters[i+1].queue_free()
 
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):
+	
+	# Make sure plunger node is always first
+	clusters = [$ui_layer/plunger_btn]
+	
+	# Generate clusters
 	for i in range(num):
 		var new_cluster = Cluster.instance()
 		new_cluster.rect_position = rand_coords()
 		new_cluster.set_id(i+1)
 		clusters.append(new_cluster)
 		call_deferred("add_child", new_cluster)
+	
+	# Calculate the solution path
+	calculate_min_path()
 
 # Generate a set of random coordinates within the screen
 func rand_coords():
@@ -118,7 +133,11 @@ func check_solution():
 	if curr_path == min_path:
 		for cluster in clusters:
 			cluster.fire_explosion()
-	
-	# Go back to main menu once explosions are finished
-	yield(get_tree().create_timer(2.4), "timeout")
-	get_tree().change_scene("res://scenes/menu.tscn")
+		for line in $line_layer.get_children():
+			line.destroy()
+		
+		# Go back to main menu once explosions are finished
+		yield(get_tree().create_timer(2.4), "timeout")
+		$ui_layer/plunger_btn.queue_free()
+		get_tree().change_scene("res://scenes/menu.tscn")
+		clear_level()

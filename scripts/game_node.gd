@@ -38,7 +38,6 @@ func can_drop_data(position, data):
 			and data.available_connections > 0
 
 func drop_data(position, data):
-	print("Got some dropped data!")
 	GameRoot.connect_clusters(data, self)
 	self.remove_conn()
 	data.remove_conn()
@@ -46,5 +45,4 @@ func drop_data(position, data):
 	data.connected_nodes.append(node_id)
 
 func get_drag_data(position):
-	print("Dropping data...")
 	return self

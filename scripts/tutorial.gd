@@ -1,6 +1,8 @@
 extends GameWorld
 
 onready var DialogWindow = preload("res://scenes/dialog_window.tscn")
+onready var TutorialCluster = preload("res://scripts/tutorial_cluster.gd")
+onready var TutorialPlunger = preload("res://scripts/tutorial_plunger.gd")
 
 # Dialog window to give instructions to user
 var dialog
@@ -14,12 +16,29 @@ func _ready():
 	dialog = DialogWindow.instance()
 	dialog.rect_position = Vector2(0, get_viewport().size.y - dialog.rect_size.y)
 	dialog.connect("gui_input", self, "next_step")
-	
-	# Remove all UI elements that aren't needed yet
-	$ui_layer/length_label.visible = false
+	call_deferred("add_child", dialog)
 	
 	# Only have one cluster initially
 	generate_clusters(1)
+
+# Generate some special cluster nodes for the tutorial
+func generate_clusters(num):
+	
+	# Setup tutorial plunger
+	clusters = [$ui_layer/plunger_btn]
+	clusters[0].set_script(TutorialPlunger)
+	
+	# Generate special tutorial clusters
+	for i in range(num):
+		var new_cluster = Cluster.instance()
+		new_cluster.set_script(TutorialCluster)
+		new_cluster.rect_position = rand_coords()
+		new_cluster.set_id(i+1)
+		clusters.append(new_cluster)
+		call_deferred("add_child", new_cluster)
+	
+	# Calculate the solution path
+	calculate_min_path()
 
 # Show the dialog box and insert some text
 func display_dialog(text):
@@ -48,12 +67,8 @@ func next_step(event):
 		8:
 			display_dialog("Oh, you're a natural!  Excellent work!  Now let's move on to the next site.")
 		9:
-			# Clear old clusters and connections
-			for line in $line_layer.get_children():
-				line.destroy()
-			for c in clusters:
-				c.queue_free()
-			clusters = [$ui_layer/plunger_btn]
+			# Generate new level with 2 clusters
+			clear_level()
 			generate_clusters(2)
 			display_dialog("The next lesson: every bundle of dynamite can only have one line coming in and one line going out.")
 		10:
@@ -67,8 +82,10 @@ func next_step(event):
 		14:
 			display_dialog("The plunger is programmed to only work if you're using as little as possible, so plan your connections carefully.")
 		15:
-			dialog.visible = false
+			display_dialog("The counter in the top left will tell you how much cord you have left to use.")
 		16:
+			dialog.visible = false
+		17:
 			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
 	
 	step += 1
