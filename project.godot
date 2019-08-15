@@ -9,19 +9,43 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Control",
+"base": "GameNode",
 "class": "Cluster",
 "language": "GDScript",
 "path": "res://scripts/flower_cluster.gd"
+}, {
+"base": "Line2D",
+"class": "Connection",
+"language": "GDScript",
+"path": "res://scripts/connection.gd"
+}, {
+"base": "Control",
+"class": "GameNode",
+"language": "GDScript",
+"path": "res://scripts/game_node.gd"
+}, {
+"base": "Node2D",
+"class": "GameWorld",
+"language": "GDScript",
+"path": "res://scripts/game.gd"
+}, {
+"base": "GameNode",
+"class": "Plunger",
+"language": "GDScript",
+"path": "res://scripts/plunger.gd"
 } ]
 _global_script_class_icons={
-"Cluster": ""
+"Cluster": "",
+"Connection": "",
+"GameNode": "",
+"GameWorld": "",
+"Plunger": ""
 }
 
 [application]
 
 config/name="Stoneflower Harvest"
-run/main_scene="res://scenes/game_world.tscn"
+run/main_scene="res://scenes/menu.tscn"
 boot_splash/image="res://assets/images/gwj_splash.png"
 config/icon="res://icon.png"
 
