@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name GameWorld
+
 # Preload classes
 const Cluster = preload("res://scenes/cluster.tscn")
 const Connection = preload("connection.gd")
@@ -116,3 +118,7 @@ func check_solution():
 	if curr_path == min_path:
 		for cluster in clusters:
 			cluster.fire_explosion()
+	
+	# Go back to main menu once explosions are finished
+	yield(get_tree().create_timer(2.4), "timeout")
+	get_tree().change_scene("res://scenes/menu.tscn")
