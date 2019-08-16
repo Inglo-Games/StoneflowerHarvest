@@ -92,6 +92,8 @@ func next_step(event):
 			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
 		18:
 			clear_level()
+			clear_ui()
+			queue_free()
 			get_tree().change_scene("res://scenes/menu.tscn")
 	
 	step += 1

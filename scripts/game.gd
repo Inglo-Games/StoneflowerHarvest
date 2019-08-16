@@ -44,6 +44,14 @@ func clear_level():
 		clusters[i+1].visible = false
 		clusters[i+1].queue_free()
 
+# Remove all UI elements for when we go back to the menu
+func clear_ui():
+	$line_layer.queue_free()
+	$ui_layer.queue_free()
+	for node in $ui_layer.get_children():
+		node.visible = false
+		node.free()
+
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):
 	
@@ -144,6 +152,7 @@ func check_solution():
 		
 		# Go back to main menu once explosions are finished
 		yield(get_tree().create_timer(2.4), "timeout")
-		$ui_layer/plunger_btn.queue_free()
-		get_tree().change_scene("res://scenes/menu.tscn")
 		clear_level()
+		clear_ui()
+		queue_free()
+		get_tree().change_scene("res://scenes/menu.tscn")
