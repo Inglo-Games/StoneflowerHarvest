@@ -16,7 +16,7 @@ onready var length_label = $ui_layer/length_label
 const DIST_THRESHOLD = 180
 
 # Amount of time per game in seconds (non-tutorial only)
-const GAME_LENGTH = 30.0
+const GAME_LENGTH = 180.0
 
 # List of all flower clusters in the level
 var clusters = []
@@ -78,8 +78,6 @@ func _on_game_timeout():
 	dialog.get_node("label").text = "Finished!\nTotal clusters harvested: %d" % harvested
 	$ui_layer.call_deferred("add_child", dialog)
 	dialog.connect("gui_input", self, "_on_end_dialog_mouse")
-	if dialog.is_connected("gui_input", dialog, "_on_dialog_mouse"):
-		dialog.disconnect("gui_input", dialog, "_on_dialog_mouse")
 
 # Check if user clicked on dialog to return to menu
 func _on_end_dialog_mouse(ev):
