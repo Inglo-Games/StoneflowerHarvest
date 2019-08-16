@@ -16,14 +16,17 @@ func check_soln_tut(ev):
 		GameRoot.check_solution()
 		
 		# Prompt next tutorial step if appropriate
-		if [7, 16].has(GameRoot.step):
+		if [8, 17].has(GameRoot.step):
 			GameRoot.next_step("")
 
-# Special drag_data function that interacts with tutorial
-func get_drag_data(position):
+# Special drop_data function that interacts with tutorial
+func drop_data(position, data):
+	GameRoot.connect_clusters(data, self)
+	self.remove_conn()
+	data.remove_conn()
+	connected_nodes.append(data.node_id)
+	data.connected_nodes.append(node_id)
 	
 	# Prompt next tutorial step if appropriate
-	if [5, 12].has(GameRoot.step):
+	if [6, 13].has(GameRoot.step):
 		GameRoot.next_step("")
-	
-	return self
