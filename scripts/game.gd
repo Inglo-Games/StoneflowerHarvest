@@ -98,7 +98,7 @@ func clear_ui_and_return(ev):
 		node.visible = false
 		node.queue_free()
 	queue_free()
-	get_tree().change_scene("res://scenes/menutscn")
+	get_tree().change_scene("res://scenes/menu.tscn")
 
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):
