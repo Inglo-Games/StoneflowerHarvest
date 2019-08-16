@@ -4,8 +4,9 @@ const DialogWindow = preload("res://scenes/dialog_window.tscn")
 const TutorialCluster = preload("res://scripts/tutorial_cluster.gd")
 const TutorialPlunger = preload("res://scripts/tutorial_plunger.gd")
 
-# Dialog window to give instructions to user
+# Dialog window and label to give instructions to user
 var dialog
+var dialog_label
 
 # Keep track of what step the user is on
 var step = 0
@@ -14,9 +15,9 @@ func _ready():
 	
 	# Set up instruction dialog window
 	dialog = DialogWindow.instance()
-	dialog.rect_position = Vector2(0, get_viewport().size.y - dialog.rect_size.y)
+	dialog.rect_position = Vector2(0, 400)
 	dialog.connect("gui_input", self, "next_step")
-	call_deferred("add_child", dialog)
+	$ui_layer.call_deferred("add_child", dialog)
 	
 	# Add plunger_btn and set it to tutorial-specific script
 	plunger = Plunger.instance()
@@ -46,7 +47,7 @@ func generate_clusters(num):
 # Show the dialog box and insert some text
 func display_dialog(text):
 	dialog.visible = true
-	dialog.get_node("dialog_window/label").text = text
+	get_node("ui_layer/dialog_window/label").text = text
 
 # Display a new action based on previous one
 func next_step(event):
