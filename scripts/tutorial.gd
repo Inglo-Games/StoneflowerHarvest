@@ -1,8 +1,8 @@
 extends GameWorld
 
-onready var DialogWindow = preload("res://scenes/dialog_window.tscn")
-onready var TutorialCluster = preload("res://scripts/tutorial_cluster.gd")
-onready var TutorialPlunger = preload("res://scripts/tutorial_plunger.gd")
+const DialogWindow = preload("res://scenes/dialog_window.tscn")
+const TutorialCluster = preload("res://scripts/tutorial_cluster.gd")
+const TutorialPlunger = preload("res://scripts/tutorial_plunger.gd")
 
 # Dialog window to give instructions to user
 var dialog
@@ -90,5 +90,8 @@ func next_step(event):
 			dialog.visible = false
 		17:
 			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
+		18:
+			clear_level()
+			get_tree().change_scene("res://scenes/menu.tscn")
 	
 	step += 1
