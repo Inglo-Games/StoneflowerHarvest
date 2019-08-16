@@ -17,7 +17,7 @@ func check_soln_tut(ev):
 		
 		# Prompt next tutorial step if appropriate
 		if [8, 17].has(GameRoot.step):
-			GameRoot.next_step("")
+			GameRoot.next_step()
 
 # Special drop_data function that interacts with tutorial
 func drop_data(position, data):
@@ -29,4 +29,4 @@ func drop_data(position, data):
 	
 	# Prompt next tutorial step if appropriate
 	if [6, 13].has(GameRoot.step):
-		GameRoot.next_step("")
+		GameRoot.next_step()

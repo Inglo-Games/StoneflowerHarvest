@@ -16,8 +16,7 @@ func _ready():
 	# Set up instruction dialog window
 	dialog = DialogWindow.instance()
 	dialog.rect_position = Vector2(0, 400)
-	dialog.connect("gui_input", self, "next_step")
-	$ui_layer.call_deferred("add_child", dialog)
+	$ui_layer.add_child(dialog)
 	
 	# Add plunger_btn and set it to tutorial-specific script
 	plunger = Plunger.instance()
@@ -28,6 +27,9 @@ func _ready():
 	
 	# Only have one cluster initially
 	generate_clusters(1)
+	
+	# Start the tutorial dialog
+	next_step()
 
 # Generate some special cluster nodes for the tutorial
 func generate_clusters(num):
@@ -50,7 +52,7 @@ func display_dialog(text):
 	get_node("ui_layer/dialog_window/label").text = text
 
 # Display a new action based on previous one
-func next_step(event):
+func next_step():
 	match step:
 		0:
 			display_dialog("Ah! You must be the new worker!")

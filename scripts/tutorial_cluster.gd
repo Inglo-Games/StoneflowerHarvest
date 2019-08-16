@@ -1,8 +1,5 @@
 extends Cluster
 
-func _ready():
-	pass
-
 # Special drop_data function that interacts with tutorial
 func drop_data(position, data):
 	GameRoot.connect_clusters(data, self)
@@ -13,4 +10,4 @@ func drop_data(position, data):
 	
 	# Prompt next tutorial step if appropriate
 	if [6, 13].has(GameRoot.step):
-		GameRoot.next_step("")
+		GameRoot.next_step()
