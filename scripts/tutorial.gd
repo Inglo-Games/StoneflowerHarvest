@@ -31,6 +31,10 @@ func _ready():
 	# Start the tutorial dialog
 	next_step()
 
+# Overriding this function to prevent timer from running
+func start_timed_game():
+	pass
+
 # Generate some special cluster nodes for the tutorial
 func generate_clusters(num):
 	
