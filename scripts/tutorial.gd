@@ -71,10 +71,10 @@ func next_step():
 		7:
 			dialog.visible = false
 		8:
+			yield(get_tree().create_timer(2.2), "timeout")
 			display_dialog("Oh, you're a natural!  Excellent work!  Now let's move on to the next site.")
 		9:
 			# Generate new level with 2 clusters
-			clear_level()
 			generate_clusters(2)
 			display_dialog("The next lesson: every bundle of dynamite can only have one line coming in and one line going out.")
 		10:
@@ -94,7 +94,6 @@ func next_step():
 		17:
 			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
 		18:
-			clear_level()
 			clear_ui()
 			queue_free()
 			get_tree().change_scene("res://scenes/menu.tscn")

@@ -34,7 +34,7 @@ func _ready():
 	$ui_layer.call_deferred("add_child", plunger)
 	clusters = [plunger]
 	
-	generate_clusters(4)
+	#generate_clusters(4)
 
 # Remove all lines and nodes in this level
 func clear_level():
@@ -43,6 +43,7 @@ func clear_level():
 	for i in range(len(clusters)-1):
 		clusters[i+1].visible = false
 		clusters[i+1].queue_free()
+	clusters = [plunger]
 
 # Remove all UI elements for when we go back to the menu
 func clear_ui():
@@ -50,7 +51,7 @@ func clear_ui():
 	$ui_layer.queue_free()
 	for node in $ui_layer.get_children():
 		node.visible = false
-		node.free()
+		node.queue_free()
 
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):
@@ -69,7 +70,7 @@ func generate_clusters(num):
 # Generate a set of random coordinates within the screen
 func rand_coords():
 	var win = get_viewport().size
-	var temp_pos = Vector2(rand_range(0.1, 0.9) * win.x, rand_range(0.1, 0.9) * win.y)
+	var temp_pos = Vector2(rand_range(0.1, 0.9) * win.x, rand_range(0.2, 0.7) * win.y)
 	
 	# Make sure new cluster isn't too close to others
 	for c in clusters:
@@ -150,9 +151,6 @@ func check_solution():
 		for line in $line_layer.get_children():
 			line.destroy()
 		
-		# Go back to main menu once explosions are finished
+		# Clear the old clusters once explosions are finished
 		yield(get_tree().create_timer(2.4), "timeout")
 		clear_level()
-		clear_ui()
-		queue_free()
-		get_tree().change_scene("res://scenes/menu.tscn")
