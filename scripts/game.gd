@@ -4,6 +4,7 @@ class_name GameWorld
 
 # Preload classes
 const Cluster = preload("res://scenes/cluster.tscn")
+const Plunger = preload("res://scenes/plunger_btn.tscn")
 const Connection = preload("connection.gd")
 const SJTE = preload("sjte_alg.gd")
 
@@ -16,6 +17,8 @@ const dist_threshold = 180
 # List of all flower clusters in the level
 var clusters = []
 
+var plunger = 0
+
 # Smallest path through the clusters and its length
 var min_path = []
 var min_len = -1
@@ -24,8 +27,13 @@ var min_len = -1
 var remaining_len = -1
 
 func _ready():
-	#generate_clusters(3)
-	pass
+	
+	# Add plunger_btn scene
+	plunger = Plunger.instance()
+	plunger.rect_position = Vector2(40, 450)
+	$ui_layer.call_deferred("add_child", plunger)
+	
+	generate_clusters(4)
 
 # Remove all lines and nodes in this level
 func clear_level():
@@ -39,7 +47,7 @@ func clear_level():
 func generate_clusters(num):
 	
 	# Make sure plunger node is always first
-	clusters = [$ui_layer/plunger_btn]
+	clusters = [plunger]
 	
 	# Generate clusters
 	for i in range(num):

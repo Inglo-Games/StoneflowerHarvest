@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background_grass.jpg" type="Texture" id=2]
-[ext_resource path="res://assets/icons/plunger.png" type="Texture" id=3]
-[ext_resource path="res://scripts/plunger.gd" type="Script" id=4]
 [ext_resource path="res://assets/icons/eraser.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/stonehenge25_3.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scripts/destroy_btn.gd" type="Script" id=8]
@@ -26,21 +24,6 @@ centered = false
 
 [node name="ui_layer" type="CanvasLayer" parent="."]
 layer = 2
-
-[node name="plunger_btn" type="Control" parent="ui_layer"]
-margin_left = 40.0
-margin_top = 450.0
-margin_right = 132.0
-margin_bottom = 548.0
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="plunger_icon" type="Sprite" parent="ui_layer/plunger_btn"]
-scale = Vector2( 0.6, 0.4 )
-texture = ExtResource( 3 )
-centered = false
 
 [node name="destroy_conn_btn" type="Control" parent="ui_layer"]
 margin_left = 733.05
