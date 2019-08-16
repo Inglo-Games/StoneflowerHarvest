@@ -12,12 +12,18 @@ const SJTE = preload("sjte_alg.gd")
 onready var length_label = $ui_layer/length_label
 
 # Minimum distance allowed between clusters in pixels
-const dist_threshold = 180
+const DIST_THRESHOLD = 180
+
+# Amount of time per game in seconds (non-tutorial only)
+const GAME_LENGTH = 180.0
 
 # List of all flower clusters in the level
 var clusters = []
 
-var plunger = 0
+# UI elements
+var plunger
+var time_label
+var timer
 
 # Smallest path through the clusters and its length
 var min_path = []
@@ -25,6 +31,9 @@ var min_len = -1
 
 # Amount of connection length left to use
 var remaining_len = -1
+
+# Number of clusters harvested
+var harvested = 0
 
 func _ready():
 	
@@ -34,7 +43,36 @@ func _ready():
 	$ui_layer.call_deferred("add_child", plunger)
 	clusters = [plunger]
 	
-	#generate_clusters(4)
+	start_timed_game()
+
+func _process(delta):
+	
+	# Update timer label
+	if timer.time_left >= 0:
+		time_label.text = str("%3.2f" % timer.time_left)
+
+# Function to set up and begin a timed game
+func start_timed_game():
+	set_timer()
+	generate_clusters(5)
+
+# Set up timer and label for timed game
+func set_timer():
+	
+	# Set up UI label
+	time_label = $ui_layer/time_label
+	time_label.text = str("%3.2f" % GAME_LENGTH)
+	
+	# Set up actual timer object
+	timer = $timer
+	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
+	timer.connect("timeout", self, "end_timed_game")
+	timer.start(GAME_LENGTH)
+
+# End a timed game 
+func end_timed_game():
+	# TODO: implement this function
+	pass
 
 # Remove all lines and nodes in this level
 func clear_level():
@@ -74,7 +112,7 @@ func rand_coords():
 	
 	# Make sure new cluster isn't too close to others
 	for c in clusters:
-		if temp_pos.distance_to(c.rect_position) < dist_threshold:
+		if temp_pos.distance_to(c.rect_position) < DIST_THRESHOLD:
 			temp_pos = rand_coords()
 	return temp_pos
 
@@ -146,6 +184,9 @@ func check_solution():
 	
 	# Check that against the saved min path
 	if curr_path == min_path:
+		
+		harvested += len(clusters) - 1
+		
 		for cluster in clusters:
 			cluster.fire_explosion()
 		for line in $line_layer.get_children():
