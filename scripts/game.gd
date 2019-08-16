@@ -16,7 +16,7 @@ onready var length_label = $ui_layer/length_label
 const DIST_THRESHOLD = 180
 
 # Amount of time per game in seconds (non-tutorial only)
-const GAME_LENGTH = 1.0
+const GAME_LENGTH = 30.0
 
 # List of all flower clusters in the level
 var clusters = []
@@ -77,9 +77,14 @@ func end_timed_game():
 	dialog.rect_position = Vector2(0,200)
 	dialog.get_node("label").text = "Finished!\nTotal clusters harvested: %d" % harvested
 	$ui_layer.call_deferred("add_child", dialog)
-	dialog.connect("gui_input", self, "clear_ui_and_return")
+	dialog.connect("gui_input", self, "end_game_dialog")
 	if dialog.is_connected("gui_input", dialog, "get_user_click"):
 		dialog.disconnect("gui_input", dialog, "get_user_click")
+
+# Check if user clicked on dialog to return to menu
+func end_game_dialog(ev):
+	if ev is InputEventMouseButton and not ev.pressed:
+		clear_ui_and_return()
 
 # Remove all lines and nodes in this level
 func clear_level():
@@ -91,7 +96,7 @@ func clear_level():
 	clusters = [plunger]
 
 # Remove all UI elements for when we go back to the menu
-func clear_ui_and_return(ev):
+func clear_ui_and_return():
 	$line_layer.queue_free()
 	$ui_layer.queue_free()
 	for node in $ui_layer.get_children():
@@ -204,3 +209,7 @@ func check_solution():
 		# Clear the old clusters once explosions are finished
 		yield(get_tree().create_timer(2.4), "timeout")
 		clear_level()
+		
+		# If not in the tutorial, generate new clusters
+		if timer.time_left > 0:
+			generate_clusters(randi() % 3 + 2)

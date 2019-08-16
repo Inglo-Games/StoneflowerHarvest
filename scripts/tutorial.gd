@@ -101,6 +101,6 @@ func next_step():
 		17:
 			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
 		18:
-			clear_ui_and_return("")
+			clear_ui_and_return()
 	
 	step += 1
