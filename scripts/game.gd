@@ -25,6 +25,7 @@ var clusters = []
 var plunger
 var time_label
 var timer
+var sfx
 
 # Smallest path through the clusters and its length
 var min_path = []
@@ -52,6 +53,9 @@ func _ready():
 	timer = $timer
 	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
 	timer.connect("timeout", self, "_on_game_timeout")
+	
+	# Set up audio tracks
+	sfx = $sfx
 	
 	start_timed_game()
 
@@ -203,6 +207,7 @@ func check_solution():
 			cluster.fire_explosion()
 		for line in $line_layer.get_children():
 			line.destroy()
+		sfx.play()
 		
 		# Clear the old clusters once explosions are finished
 		yield(get_tree().create_timer(2.4), "timeout")
