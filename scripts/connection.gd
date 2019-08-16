@@ -4,8 +4,6 @@ extends Line2D
 
 class_name Connection
 
-onready var GameRoot = get_node("/root/game_world")
-
 var nodes = []
 
 func _ready():
