@@ -32,6 +32,7 @@ func _ready():
 	plunger = Plunger.instance()
 	plunger.rect_position = Vector2(40, 450)
 	$ui_layer.call_deferred("add_child", plunger)
+	clusters = [plunger]
 	
 	generate_clusters(4)
 
@@ -45,9 +46,6 @@ func clear_level():
 
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):
-	
-	# Make sure plunger node is always first
-	clusters = [plunger]
 	
 	# Generate clusters
 	for i in range(num):

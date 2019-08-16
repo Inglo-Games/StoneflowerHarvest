@@ -18,15 +18,18 @@ func _ready():
 	dialog.connect("gui_input", self, "next_step")
 	call_deferred("add_child", dialog)
 	
+	# Add plunger_btn and set it to tutorial-specific script
+	plunger = Plunger.instance()
+	plunger.set_script(TutorialPlunger)
+	plunger.rect_position = Vector2(40, 450)
+	clusters = [plunger]
+	$ui_layer.call_deferred("add_child", plunger)
+	
 	# Only have one cluster initially
 	generate_clusters(1)
 
 # Generate some special cluster nodes for the tutorial
 func generate_clusters(num):
-	
-	# Setup tutorial plunger
-	clusters = [$ui_layer/plunger_btn]
-	clusters[0].set_script(TutorialPlunger)
 	
 	# Generate special tutorial clusters
 	for i in range(num):
