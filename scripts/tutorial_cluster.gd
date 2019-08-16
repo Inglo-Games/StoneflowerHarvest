@@ -10,4 +10,4 @@ func drop_data(position, data):
 	
 	# Prompt next tutorial step if appropriate
 	if [6, 13].has(GameRoot.step):
-		GameRoot.next_step()
+		GameRoot.emit_signal("continue_tut")

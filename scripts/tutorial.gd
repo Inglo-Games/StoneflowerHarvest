@@ -3,6 +3,9 @@ extends GameWorld
 const TutorialCluster = preload("res://scripts/tutorial_cluster.gd")
 const TutorialPlunger = preload("res://scripts/tutorial_plunger.gd")
 
+# Signal to continue tutorial
+signal continue_tut
+
 # Dialog window and label to give instructions to user
 var dialog
 var dialog_label
@@ -29,8 +32,9 @@ func _ready():
 	# Only have one cluster initially
 	generate_clusters(1)
 	
-	# Start the tutorial dialog
-	next_step()
+	# Listen for tutorial signal and begin
+	connect("continue_tut", self, "_on_next_step")
+	emit_signal("continue_tut")
 
 # Overriding these functions to prevent timer from running
 func _process(delta):
@@ -59,7 +63,7 @@ func display_dialog(text):
 	get_node("ui_layer/dialog_window/label").text = text
 
 # Display a new action based on previous one
-func next_step():
+func _on_next_step():
 	match step:
 		0:
 			display_dialog("Ah! You must be the new worker!")

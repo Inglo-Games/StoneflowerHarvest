@@ -10,4 +10,4 @@ func _ready():
 
 func _on_dialog_mouse(ev):
 	if ev is InputEventMouseButton and not ev.pressed:
-		game_root.next_step()
+		game_root.emit_signal("continue_tut")
