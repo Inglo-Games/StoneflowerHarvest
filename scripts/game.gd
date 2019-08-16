@@ -43,6 +43,15 @@ func _ready():
 	$ui_layer.call_deferred("add_child", plunger)
 	clusters = [plunger]
 	
+	# Set up UI label
+	time_label = $ui_layer/time_label
+	time_label.text = str("%3.2f" % GAME_LENGTH)
+	
+	# Set up actual timer object
+	timer = $timer
+	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
+	timer.connect("timeout", self, "end_timed_game")
+	
 	start_timed_game()
 
 func _process(delta):
@@ -53,21 +62,8 @@ func _process(delta):
 
 # Function to set up and begin a timed game
 func start_timed_game():
-	set_timer()
-	generate_clusters(5)
-
-# Set up timer and label for timed game
-func set_timer():
-	
-	# Set up UI label
-	time_label = $ui_layer/time_label
-	time_label.text = str("%3.2f" % GAME_LENGTH)
-	
-	# Set up actual timer object
-	timer = $timer
-	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
-	timer.connect("timeout", self, "end_timed_game")
 	timer.start(GAME_LENGTH)
+	generate_clusters(5)
 
 # End a timed game 
 func end_timed_game():
