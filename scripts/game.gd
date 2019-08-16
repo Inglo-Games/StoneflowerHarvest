@@ -13,7 +13,7 @@ const SJTE = preload("sjte_alg.gd")
 onready var length_label = $ui_layer/length_label
 
 # Minimum distance allowed between clusters in pixels
-const DIST_THRESHOLD = 180
+const DIST_THRESHOLD = 140
 
 # Amount of time per game in seconds (non-tutorial only)
 const GAME_LENGTH = 180.0
@@ -124,7 +124,7 @@ func generate_clusters(num):
 # Generate a set of random coordinates within the screen
 func rand_coords():
 	var win = get_viewport().size
-	var temp_pos = Vector2(rand_range(0.1, 0.9) * win.x, rand_range(0.2, 0.7) * win.y)
+	var temp_pos = Vector2(rand_range(0.05, 0.8) * win.x, rand_range(0.2, 0.7) * win.y)
 	
 	# Make sure new cluster isn't too close to others
 	for c in clusters:
