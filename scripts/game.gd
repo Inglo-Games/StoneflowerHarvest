@@ -5,6 +5,7 @@ class_name GameWorld
 # Preload classes
 const Cluster = preload("res://scenes/cluster.tscn")
 const Plunger = preload("res://scenes/plunger_btn.tscn")
+const DialogWindow = preload("res://scenes/dialog_window.tscn")
 const Connection = preload("connection.gd")
 const SJTE = preload("sjte_alg.gd")
 
@@ -15,7 +16,7 @@ onready var length_label = $ui_layer/length_label
 const DIST_THRESHOLD = 180
 
 # Amount of time per game in seconds (non-tutorial only)
-const GAME_LENGTH = 180.0
+const GAME_LENGTH = 1.0
 
 # List of all flower clusters in the level
 var clusters = []
@@ -67,8 +68,18 @@ func start_timed_game():
 
 # End a timed game 
 func end_timed_game():
-	# TODO: implement this function
-	pass
+	
+	timer.stop()
+	time_label.text = "0.00"
+	
+	# Show dialog telling user their score
+	var dialog = DialogWindow.instance()
+	dialog.rect_position = Vector2(0,200)
+	dialog.get_node("label").text = "Finished!\nTotal clusters harvested: %d" % harvested
+	$ui_layer.call_deferred("add_child", dialog)
+	dialog.connect("gui_input", self, "clear_ui_and_return")
+	if dialog.is_connected("gui_input", dialog, "get_user_click"):
+		dialog.disconnect("gui_input", dialog, "get_user_click")
 
 # Remove all lines and nodes in this level
 func clear_level():
@@ -80,12 +91,14 @@ func clear_level():
 	clusters = [plunger]
 
 # Remove all UI elements for when we go back to the menu
-func clear_ui():
+func clear_ui_and_return(ev):
 	$line_layer.queue_free()
 	$ui_layer.queue_free()
 	for node in $ui_layer.get_children():
 		node.visible = false
 		node.queue_free()
+	queue_free()
+	get_tree().change_scene("res://scenes/menutscn")
 
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):

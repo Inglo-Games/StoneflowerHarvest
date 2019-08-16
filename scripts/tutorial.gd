@@ -1,6 +1,5 @@
 extends GameWorld
 
-const DialogWindow = preload("res://scenes/dialog_window.tscn")
 const TutorialCluster = preload("res://scripts/tutorial_cluster.gd")
 const TutorialPlunger = preload("res://scripts/tutorial_plunger.gd")
 
@@ -25,13 +24,17 @@ func _ready():
 	clusters = [plunger]
 	$ui_layer.call_deferred("add_child", plunger)
 	
+	$ui_layer/time_label.visible = false
+	
 	# Only have one cluster initially
 	generate_clusters(1)
 	
 	# Start the tutorial dialog
 	next_step()
 
-# Overriding this function to prevent timer from running
+# Overriding these functions to prevent timer from running
+func _process(delta):
+	pass
 func start_timed_game():
 	pass
 
@@ -98,8 +101,6 @@ func next_step():
 		17:
 			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
 		18:
-			clear_ui()
-			queue_free()
-			get_tree().change_scene("res://scenes/menu.tscn")
+			clear_ui_and_return("")
 	
 	step += 1
