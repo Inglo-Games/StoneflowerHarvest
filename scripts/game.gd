@@ -51,7 +51,7 @@ func _ready():
 	# Set up actual timer object
 	timer = $timer
 	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
-	timer.connect("timeout", self, "end_timed_game")
+	timer.connect("timeout", self, "_on_game_timeout")
 	
 	start_timed_game()
 
@@ -67,7 +67,7 @@ func start_timed_game():
 	generate_clusters(5)
 
 # End a timed game 
-func end_timed_game():
+func _on_game_timeout():
 	
 	timer.stop()
 	time_label.text = "0.00"
@@ -77,12 +77,12 @@ func end_timed_game():
 	dialog.rect_position = Vector2(0,200)
 	dialog.get_node("label").text = "Finished!\nTotal clusters harvested: %d" % harvested
 	$ui_layer.call_deferred("add_child", dialog)
-	dialog.connect("gui_input", self, "end_game_dialog")
-	if dialog.is_connected("gui_input", dialog, "get_user_click"):
-		dialog.disconnect("gui_input", dialog, "get_user_click")
+	dialog.connect("gui_input", self, "_on_end_dialog_mouse")
+	if dialog.is_connected("gui_input", dialog, "_on_dialog_mouse"):
+		dialog.disconnect("gui_input", dialog, "_on_dialog_mouse")
 
 # Check if user clicked on dialog to return to menu
-func end_game_dialog(ev):
+func _on_end_dialog_mouse(ev):
 	if ev is InputEventMouseButton and not ev.pressed:
 		clear_ui_and_return()
 

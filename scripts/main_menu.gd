@@ -6,14 +6,14 @@ onready var Tutorial = preload("res://scripts/tutorial.gd")
 func _ready():
 	
 	# Set up menu buttons
-	$container/play_btn.connect("pressed", self, "play_game")
-	$container/tut_btn.connect("pressed", self, "play_tutorial")
-	$container/quit_btn.connect("pressed", self, "quit_game")
+	$container/play_btn.connect("pressed", self, "_on_play_pressed")
+	$container/tut_btn.connect("pressed", self, "_on_tutorial_pressed")
+	$container/quit_btn.connect("pressed", self, "_on_quit_game")
 
-func play_game():
+func _on_play_pressed():
 	get_tree().change_scene("res://scenes/game_world.tscn")
 
-func play_tutorial():
+func _on_tutorial_pressed():
 	
 	# Manually change scenes so we can use the tutorial script instead of the
 	# normal one
@@ -25,5 +25,5 @@ func play_tutorial():
 	tutorial.set_script(Tutorial)
 	root.add_child(tutorial)
 
-func quit_game():
+func _on_quit_game():
 	get_tree().quit()

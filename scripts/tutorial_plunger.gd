@@ -6,10 +6,10 @@ func _ready():
 	available_connections = 1
 	
 	set_process_input(true)
-	connect("gui_input", self, "check_soln_tut")
+	connect("gui_input", self, "_on_mouse_event")
 
 # Special solution function that interacts with tutorial
-func check_soln_tut(ev):
+func _on_mouse_event(ev):
 	
 	# React to click release
 	if ev is InputEventMouseButton and not ev.pressed:
