@@ -118,10 +118,16 @@ func rand_coords():
 	var temp_pos = Vector2(rand_range(0.05, 0.8) * win.x, rand_range(0.2, 0.7) * win.y)
 	
 	# Make sure new cluster isn't too close to others
-	for c in clusters:
-		if temp_pos.distance_to(c.rect_position) < DIST_THRESHOLD:
-			temp_pos = rand_coords()
-	return temp_pos
+	var too_close = true
+	while too_close:
+		too_close = false
+		for c in clusters:
+			if temp_pos.distance_to(c.rect_position) < DIST_THRESHOLD:
+				too_close = true
+		if not too_close:
+			return temp_pos
+		else:
+			temp_pos = Vector2(rand_range(0.05, 0.8) * win.x, rand_range(0.2, 0.7) * win.y)
 
 # Callback function to draw a line between two clusters
 func connect_clusters(src_cluster, dest_cluster):
@@ -206,4 +212,4 @@ func check_solution():
 		
 		# If not in the tutorial, generate new clusters
 		if timer.time_left > 0:
-			generate_clusters(randi() % 3 + 2)
+			generate_clusters(randi() % 6 + 2)
