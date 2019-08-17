@@ -11,21 +11,19 @@ const SJTE = preload("sjte_alg.gd")
 
 # UI elements
 onready var length_label = $ui_layer/length_label
+onready var time_label = $ui_layer/time_label
+onready var timer = $timer
+onready var sfx = $sfx
+var plunger
 
 # Minimum distance allowed between clusters in pixels
 const DIST_THRESHOLD = 140
 
 # Amount of time per game in seconds (non-tutorial only)
-const GAME_LENGTH = 180.0
+const GAME_LENGTH = 60.0
 
 # List of all flower clusters in the level
 var clusters = []
-
-# UI elements
-var plunger
-var time_label
-var timer
-var sfx
 
 # Smallest path through the clusters and its length
 var min_path = []
@@ -44,18 +42,11 @@ func _ready():
 	plunger.rect_position = Vector2(40, 450)
 	$ui_layer.call_deferred("add_child", plunger)
 	clusters = [plunger]
-	
-	# Set up UI label
-	time_label = $ui_layer/time_label
+
+	# Set up timer 
 	time_label.text = str("%3.2f" % GAME_LENGTH)
-	
-	# Set up actual timer object
-	timer = $timer
 	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
 	timer.connect("timeout", self, "_on_game_timeout")
-	
-	# Set up audio tracks
-	sfx = $sfx
 	
 	start_timed_game()
 
@@ -110,7 +101,7 @@ func clear_ui_and_return():
 # Generate a number of flower clusters and place them about the screen randomly
 func generate_clusters(num):
 	
-	# Generate clusters
+	# Generate clusters and add them to screen
 	for i in range(num):
 		var new_cluster = Cluster.instance()
 		new_cluster.rect_position = rand_coords()
