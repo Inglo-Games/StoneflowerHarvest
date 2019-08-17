@@ -9,6 +9,9 @@ const DialogWindow = preload("res://scenes/dialog_window.tscn")
 const Connection = preload("connection.gd")
 const SJTE = preload("sjte_alg.gd")
 
+# Signal to continue tutorial
+signal continue_tut
+
 # UI elements
 onready var length_label = $ui_layer/length_label
 onready var time_label = $ui_layer/time_label
