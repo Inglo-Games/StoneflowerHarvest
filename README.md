@@ -8,8 +8,15 @@ This game was created for the [12th Godot Wild Jam](https://itch.io/jam/godot-wi
  > 
  > Chain | Destruction | Harvest
 
+![alt text][title_image]
+![alt text][game_image]
+![alt text][tutorial_image]
+
 All code and assets are created by myself and are free to use under the MIT license, with the following exceptions:
 
-  Jugger Rock font by [Iconian Fonts](https://www.iconian.com)
-  Stone Hinge font by [Typadelic](https://www.fontspace.com/typadelic)
+* Jugger Rock font by [Iconian Fonts](https://www.iconian.com)
+* Stone Hinge font by [Typadelic](https://www.fontspace.com/typadelic)
 
+[game_image]: https://github.com/bwhaines/StoneflowerHarvest/raw/master/screenshots/game.png "Gameplay image"
+[title_image]: https://github.com/bwhaines/StoneflowerHarvest/raw/master/screenshots/title.png "Title screen"
+[tutorial_image]:https://github.com/bwhaines/StoneflowerHarvest/raw/master/screenshots/tutorial.png "Still from tutorial"
