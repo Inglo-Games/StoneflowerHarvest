@@ -51,6 +51,8 @@ func _ready():
 	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
 	timer.connect("timeout", self, "_on_game_timeout")
 	
+	randomize()
+	
 	start_timed_game()
 
 func _process(delta):
