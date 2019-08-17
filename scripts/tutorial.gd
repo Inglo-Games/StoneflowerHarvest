@@ -3,9 +3,6 @@ extends GameWorld
 const TutorialCluster = preload("res://scripts/tutorial_cluster.gd")
 const TutorialPlunger = preload("res://scripts/tutorial_plunger.gd")
 
-# Signal to continue tutorial
-signal continue_tut
-
 # Dialog window and label to give instructions to user
 var dialog
 var dialog_label
@@ -18,6 +15,7 @@ func _ready():
 	# Set up instruction dialog window
 	dialog = DialogWindow.instance()
 	dialog.rect_position = Vector2(0, 400)
+	dialog_label = dialog.get_node("label")
 	$ui_layer.add_child(dialog)
 	
 	# Add plunger_btn and set it to tutorial-specific script
@@ -60,7 +58,7 @@ func generate_clusters(num):
 # Show the dialog box and insert some text
 func display_dialog(text):
 	dialog.visible = true
-	get_node("ui_layer/dialog_window/label").text = text
+	dialog_label.text = text
 
 # Display a new action based on previous one
 func _on_next_step():
