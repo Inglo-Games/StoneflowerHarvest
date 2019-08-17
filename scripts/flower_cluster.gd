@@ -14,6 +14,7 @@ func set_id(num):
 func fire_explosion():
 	# Display explosion effect
 	$expl_particles.emitting = true
+	$dust_particles.emitting = true
 	
 	# Remove relevant sprites when they're hidden
 	$dynamite.visible = false
