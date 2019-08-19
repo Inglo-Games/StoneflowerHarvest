@@ -211,6 +211,9 @@ func check_solution():
 			line.destroy()
 		sfx.play()
 		
+		# Add time to game timer, one sec for each cluster + 1
+		timer.start(timer.time_left + len(clusters))
+		
 		# Clear the old clusters once explosions are finished
 		yield(get_tree().create_timer(2.4), "timeout")
 		clear_level()
