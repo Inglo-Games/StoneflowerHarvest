@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/flower_cluster.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/patch_base.exr" type="Texture" id=2]
+[ext_resource path="res://assets/images/dirt.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/stem1.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/stoneflower.png" type="Texture" id=4]
 [ext_resource path="res://assets/icons/dynamite.png" type="Texture" id=5]
@@ -10,16 +10,15 @@
 max_value = 3.0
 _data = [ Vector2( 0, 2.8072 ), 0.0, 0.0, 0, 0, Vector2( 0.848982, 0.4869 ), -4.61456, -4.46074, 0, 0, Vector2( 1, 0 ), 0.24714, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.423841, 0.801324 )
 colors = PoolColorArray( 0.839216, 0.839216, 0.839216, 1, 0.423529, 0.423529, 0.423529, 1, 0.364706, 0.364706, 0.364706, 1 )
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.423841, 0.801324 )
 colors = PoolColorArray( 1, 0.894118, 0, 1, 0.875288, 0.622784, 0.112915, 1, 0.709804, 0.262745, 0.262745, 1 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "fall"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("flower03:position:y")
 tracks/0/interp = 1
@@ -71,7 +70,8 @@ __meta__ = {
 }
 
 [node name="dirt" type="Sprite" parent="."]
-position = Vector2( 446.322, 284.53 )
+position = Vector2( 450, 250 )
+scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 2 )
 
 [node name="stem01" type="Sprite" parent="."]
@@ -115,7 +115,6 @@ texture = ExtResource( 5 )
 [node name="dust_particles" type="CPUParticles2D" parent="."]
 position = Vector2( 450, 341.723 )
 rotation = -1.57079
-scale = Vector2( 1, 1 )
 z_index = 1
 emitting = false
 amount = 1500
@@ -131,7 +130,7 @@ angle_random = 1.0
 scale_amount = 12.0
 scale_amount_random = 1.0
 scale_amount_curve = SubResource( 1 )
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 2 )
 
 [node name="expl_particles" type="CPUParticles2D" parent="."]
 position = Vector2( 450, 341.723 )
@@ -152,7 +151,7 @@ angle_random = 1.0
 scale_amount = 12.0
 scale_amount_random = 1.0
 scale_amount_curve = SubResource( 1 )
-color_ramp = SubResource( 2 )
+color_ramp = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fall = SubResource( 3 )
+anims/fall = SubResource( 4 )
