@@ -64,7 +64,7 @@ func _process(delta):
 # Function to set up and begin a timed game
 func start_timed_game():
 	timer.start(GAME_LENGTH)
-	generate_clusters(5)
+	generate_clusters(randi() % 2 + 3)
 
 # End a timed game 
 func _on_game_timeout():
@@ -217,4 +217,5 @@ func check_solution():
 		
 		# If not in the tutorial, generate new clusters
 		if timer.time_left > 0:
-			generate_clusters(randi() % 6 + 2)
+			# Number of clusters increases as more flowers are harvested
+			generate_clusters(randi() % 3 + 2 * (harvested / 8) + 2)
