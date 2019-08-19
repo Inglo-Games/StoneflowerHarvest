@@ -72,6 +72,7 @@ __meta__ = {
 [node name="dirt" type="Sprite" parent="."]
 position = Vector2( 450, 250 )
 scale = Vector2( 0.9, 0.9 )
+z_index = -1
 texture = ExtResource( 2 )
 
 [node name="stem01" type="Sprite" parent="."]
@@ -92,19 +93,23 @@ texture = ExtResource( 3 )
 
 [node name="flower01" type="Sprite" parent="."]
 position = Vector2( 650, 14.7955 )
+z_index = 1
 texture = ExtResource( 4 )
 
 [node name="flower02" type="Sprite" parent="."]
 position = Vector2( 150, -29.6313 )
 rotation = -0.00428766
+z_index = 1
 texture = ExtResource( 4 )
 
 [node name="flower03" type="Sprite" parent="."]
 position = Vector2( 300, -224.792 )
+z_index = 1
 texture = ExtResource( 4 )
 
 [node name="flower04" type="Sprite" parent="."]
 position = Vector2( 550, -281.912 )
+z_index = 1
 texture = ExtResource( 4 )
 
 [node name="dynamite" type="Sprite" parent="."]
