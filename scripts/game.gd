@@ -25,6 +25,9 @@ const DIST_THRESHOLD = 140
 # Amount of time per game in seconds (non-tutorial only)
 const GAME_LENGTH = 60.0
 
+# Keep track of whether we're in the tutorial or not
+var is_tutorial = false
+
 # List of all flower clusters in the level
 var clusters = []
 
@@ -203,7 +206,9 @@ func check_solution():
 	# Check that against the saved min path
 	if curr_path == min_path:
 		
-		harvested += len(clusters) - 1
+		# Record how many clusters were harvested
+		var clusters_harvested = len(clusters) - 1
+		harvested += clusters_harvested
 		
 		for cluster in clusters:
 			cluster.fire_explosion()
@@ -211,14 +216,15 @@ func check_solution():
 			line.destroy()
 		sfx.play()
 		
-		# Add time to game timer, one sec for each cluster + 1
-		timer.start(timer.time_left + len(clusters))
-		
 		# Clear the old clusters once explosions are finished
 		yield(get_tree().create_timer(2.4), "timeout")
 		clear_level()
 		
 		# If not in the tutorial, generate new clusters
-		if timer.time_left > 0:
+		if not is_tutorial:
+			
+			# Add time to game timer
+			timer.start(timer.time_left + clusters_harvested + 1)
+		
 			# Number of clusters increases as more flowers are harvested
 			generate_clusters(randi() % 3 + 2 * (harvested / 8) + 2)

@@ -12,6 +12,8 @@ var step = 0
 
 func _ready():
 	
+	is_tutorial = true
+	
 	# Set up instruction dialog window
 	dialog = DialogWindow.instance()
 	dialog.rect_position = Vector2(0, 400)
