@@ -13,14 +13,14 @@
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
-   id="svg1098"
-   sodipodi:docname="stem1.svg"
+   id="svg917"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   inkscape:export-filename="/home/bwhaines/git/StoneflowerHarvest/assets/images/stem1.png"
-   inkscape:export-xdpi="87.036919"
-   inkscape:export-ydpi="87.036919">
+   sodipodi:docname="stem2.svg"
+   inkscape:export-filename="/home/bwhaines/git/StoneflowerHarvest/assets/images/stem2.png"
+   inkscape:export-xdpi="91.734512"
+   inkscape:export-ydpi="91.734512">
   <defs
-     id="defs1092" />
+     id="defs911" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -29,10 +29,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="287.97739"
-     inkscape:cy="490.84292"
+     inkscape:cx="295.4089"
+     inkscape:cy="531.476"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1051"
@@ -40,13 +40,14 @@
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
-     id="metadata1095">
+     id="metadata914">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -55,20 +56,24 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:#000000;stroke:#000000;stroke-width:21.5;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
-       d="M 123.22024,281.50298 C 150.43452,166.97619 100.54167,65.300595 100.54167,65.300595 c 0,0 49.89285,102.053565 22.67857,216.202385"
-       id="path1651"
+       style="fill:none;stroke:#000000;stroke-width:21.5;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 110.74702,49.425595 C 125.48809,99.318452 89.958332,262.98214 89.958332,262.98214"
+       id="path1465"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#919191;stroke-width:12.565;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 123.22024,281.50298 C 140.72739,208.83632 126.88812,141.34334 114.43262,101.71311 107.25755,78.883843 100.54167,65.300595 100.54167,65.300595"
-       id="path1653"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="csc" />
+       d="M 110.74702,49.425595 C 125.48809,99.318452 89.95833,262.98214 89.95833,262.98214"
+       id="path1465-3"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="leaves">
     <g
-       id="layer1-2"
+       id="layer1-3"
        inkscape:label="Layer 1"
-       transform="rotate(-27.909788,268.96183,0.57742228)">
+       transform="rotate(163.92622,88.170366,99.149151)">
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -88,8 +93,4 @@
          style="fill:none;stroke:#000000;stroke-width:0.24078922px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
   </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="leaves" />
 </svg>
