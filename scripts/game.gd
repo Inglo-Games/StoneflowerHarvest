@@ -45,7 +45,7 @@ func _ready():
 	
 	# Add plunger_btn scene
 	plunger = Plunger.instance()
-	plunger.rect_position = Vector2(40, 450)
+	plunger.rect_position = Vector2(48, 740)
 	$ui_layer.call_deferred("add_child", plunger)
 	clusters = [plunger]
 
