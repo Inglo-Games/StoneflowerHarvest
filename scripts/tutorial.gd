@@ -21,13 +21,11 @@ func _ready():
 	$ui_layer.add_child(dialog)
 	
 	# Add plunger_btn and set it to tutorial-specific script
-	plunger = Plunger.instance()
 	plunger.set_script(TutorialPlunger)
-	plunger.rect_position = PLUNGER_COORDS
-	clusters = [plunger]
-	$ui_layer.call_deferred("add_child", plunger)
 	
+	# Make unused icons inivible
 	$ui_layer/time_label.visible = false
+	$ui_layer/ui_btns/skip_btn.visible = false
 	
 	# Only have one cluster initially
 	generate_clusters(1)
