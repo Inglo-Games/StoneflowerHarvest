@@ -41,28 +41,28 @@ margin_right = -250.0
 margin_bottom = -100.0
 rect_min_size = Vector2( 200, 300 )
 theme = ExtResource( 4 )
-custom_constants/separation = 24
+custom_constants/separation = 96
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="play_btn" type="Button" parent="container"]
-margin_top = 357.0
+margin_top = 314.0
 margin_right = 1420.0
-margin_bottom = 396.0
+margin_bottom = 334.0
 text = "PLAY GAME"
 
 [node name="tut_btn" type="Button" parent="container"]
-margin_top = 420.0
+margin_top = 430.0
 margin_right = 1420.0
-margin_bottom = 459.0
+margin_bottom = 450.0
 text = "TUTORIAL"
 
 [node name="quit_btn" type="Button" parent="container"]
-margin_top = 483.0
+margin_top = 546.0
 margin_right = 1420.0
-margin_bottom = 522.0
+margin_bottom = 566.0
 text = "QUIT"
 
 [node name="menu_audio" type="AudioStreamPlayer" parent="."]
