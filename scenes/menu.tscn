@@ -15,8 +15,9 @@ __meta__ = {
 }
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 5.55188, -185.062 )
+position = Vector2( 0, -800 )
 texture = ExtResource( 2 )
+centered = false
 
 [node name="title" type="Label" parent="."]
 anchor_right = 1.0
@@ -47,21 +48,21 @@ __meta__ = {
 }
 
 [node name="play_btn" type="Button" parent="container"]
-margin_top = 117.0
-margin_right = 300.0
-margin_bottom = 156.0
+margin_top = 357.0
+margin_right = 1420.0
+margin_bottom = 396.0
 text = "PLAY GAME"
 
 [node name="tut_btn" type="Button" parent="container"]
-margin_top = 180.0
-margin_right = 300.0
-margin_bottom = 219.0
+margin_top = 420.0
+margin_right = 1420.0
+margin_bottom = 459.0
 text = "TUTORIAL"
 
 [node name="quit_btn" type="Button" parent="container"]
-margin_top = 243.0
-margin_right = 300.0
-margin_bottom = 282.0
+margin_top = 483.0
+margin_right = 1420.0
+margin_bottom = 522.0
 text = "QUIT"
 
 [node name="menu_audio" type="AudioStreamPlayer" parent="."]

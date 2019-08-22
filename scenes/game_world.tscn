@@ -1,18 +1,22 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background_grass.jpg" type="Texture" id=2]
-[ext_resource path="res://scripts/destroy_btn.gd" type="Script" id=3]
+[ext_resource path="res://assets/icons/spool.png" type="Texture" id=3]
 [ext_resource path="res://assets/icons/eraser.png" type="Texture" id=4]
-[ext_resource path="res://assets/fonts/stonehenge25_3.tres" type="DynamicFont" id=5]
-[ext_resource path="res://assets/audio/HarvestDay.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/explosion.wav" type="AudioStream" id=7]
+[ext_resource path="res://scripts/destroy_btn.gd" type="Script" id=5]
+[ext_resource path="res://assets/icons/skip3.png" type="Texture" id=6]
+[ext_resource path="res://assets/fonts/stonehenge25_3.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/audio/HarvestDay.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/explosion.wav" type="AudioStream" id=9]
 
-[sub_resource type="Theme" id=1]
-default_font = ExtResource( 5 )
+[sub_resource type="ButtonGroup" id=1]
 
 [sub_resource type="Theme" id=2]
-default_font = ExtResource( 5 )
+default_font = ExtResource( 7 )
+
+[sub_resource type="Theme" id=3]
+default_font = ExtResource( 7 )
 
 [node name="game_world" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,7 +25,6 @@ script = ExtResource( 1 )
 layer = -2
 
 [node name="background" type="Sprite" parent="bg_layer"]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 centered = false
 
@@ -30,27 +33,41 @@ centered = false
 [node name="ui_layer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="destroy_conn_btn" type="Control" parent="ui_layer"]
-margin_left = 733.05
-margin_top = 14.9
-margin_right = 784.05
-margin_bottom = 65.9
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ui_btns" type="VBoxContainer" parent="ui_layer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -176.0
+margin_top = 48.0
+margin_right = 336.0
+margin_bottom = 1477.0
+rect_scale = Vector2( 0.25, 0.25 )
+custom_constants/separation = 72
 
-[node name="destroy_icon" type="Sprite" parent="ui_layer/destroy_conn_btn"]
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 4 )
-centered = false
+[node name="conn_mode_btn" type="TextureButton" parent="ui_layer/ui_btns"]
+margin_right = 512.0
+margin_bottom = 489.0
+texture_normal = ExtResource( 3 )
+
+[node name="destroy_mode_btn" type="TextureButton" parent="ui_layer/ui_btns"]
+margin_top = 561.0
+margin_right = 512.0
+margin_bottom = 1011.0
+group = SubResource( 1 )
+texture_normal = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="skip_btn" type="TextureButton" parent="ui_layer/ui_btns"]
+margin_top = 1083.0
+margin_right = 512.0
+margin_bottom = 1429.0
+texture_normal = ExtResource( 6 )
 
 [node name="length_label" type="Label" parent="ui_layer"]
-margin_left = 25.65
-margin_top = 22.8
+margin_left = 48.0
+margin_top = 48.0
 margin_right = 65.65
 margin_bottom = 36.8
-theme = SubResource( 1 )
+theme = SubResource( 2 )
 text = "9999999"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -58,11 +75,11 @@ __meta__ = {
 
 [node name="time_label" type="Label" parent="ui_layer"]
 anchor_right = 1.0
-margin_left = 380.0
-margin_top = 22.0
-margin_right = -380.0
+margin_left = 960.0
+margin_top = 48.0
+margin_right = -960.0
 margin_bottom = 14.0
-theme = SubResource( 2 )
+theme = SubResource( 3 )
 text = "180.00"
 uppercase = true
 __meta__ = {
@@ -72,11 +89,11 @@ __meta__ = {
 [node name="timer" type="Timer" parent="."]
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 8 )
 volume_db = -25.0
 autoplay = true
 mix_target = 2
 
 [node name="sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 9 )
 volume_db = -35.0
