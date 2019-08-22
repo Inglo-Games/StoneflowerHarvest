@@ -16,14 +16,14 @@ func _ready():
 	
 	# Set up instruction dialog window
 	dialog = DialogWindow.instance()
-	dialog.rect_position = Vector2(0, 400)
+	dialog.rect_position = DIALOG_COORDS
 	dialog_label = dialog.get_node("label")
 	$ui_layer.add_child(dialog)
 	
 	# Add plunger_btn and set it to tutorial-specific script
 	plunger = Plunger.instance()
 	plunger.set_script(TutorialPlunger)
-	plunger.rect_position = Vector2(40, 450)
+	plunger.rect_position = PLUNGER_COORDS
 	clusters = [plunger]
 	$ui_layer.call_deferred("add_child", plunger)
 	

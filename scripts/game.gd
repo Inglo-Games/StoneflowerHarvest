@@ -9,6 +9,16 @@ const DialogWindow = preload("res://scenes/dialog_window.tscn")
 const Connection = preload("connection.gd")
 const SJTE = preload("sjte_alg.gd")
 
+# Minimum distance allowed between clusters in pixels
+const DIST_THRESHOLD = 140
+
+# Amount of time per game in seconds (non-tutorial only)
+const GAME_LENGTH = 60.0
+
+# Positions of plunger icon and dialog boxes
+const PLUNGER_COORDS = Vector2(48, 740)
+const DIALOG_COORDS = Vector2(0, 660)
+
 # Signal to continue tutorial
 signal continue_tut
 
@@ -18,12 +28,6 @@ onready var time_label = $ui_layer/time_label
 onready var timer = $timer
 onready var sfx = $sfx
 var plunger
-
-# Minimum distance allowed between clusters in pixels
-const DIST_THRESHOLD = 140
-
-# Amount of time per game in seconds (non-tutorial only)
-const GAME_LENGTH = 60.0
 
 # Keep track of whether we're in the tutorial or not
 var is_tutorial = false
@@ -45,7 +49,7 @@ func _ready():
 	
 	# Add plunger_btn scene
 	plunger = Plunger.instance()
-	plunger.rect_position = Vector2(48, 740)
+	plunger.rect_position = PLUNGER_COORDS
 	$ui_layer.call_deferred("add_child", plunger)
 	clusters = [plunger]
 
@@ -77,7 +81,7 @@ func _on_game_timeout():
 	
 	# Show dialog telling user their score
 	var dialog = DialogWindow.instance()
-	dialog.rect_position = Vector2(0,200)
+	dialog.rect_position = DIALOG_COORDS
 	dialog.get_node("label").text = "Finished!\nTotal clusters harvested: %d" % harvested
 	$ui_layer.call_deferred("add_child", dialog)
 	dialog.connect("gui_input", self, "_on_end_dialog_mouse")
