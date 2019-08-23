@@ -23,6 +23,9 @@ const DIALOG_COORDS = Vector2(0, 660)
 signal continue_tut
 
 # UI elements
+onready var conn_mode_btn = $ui_layer/ui_btns/conn_mode_btn
+onready var dest_mode_btn = $ui_layer/ui_btns/destroy_mode_btn
+onready var skip_btn = $ui_layer/ui_btns/skip_btn
 onready var length_label = $ui_layer/length_label
 onready var time_label = $ui_layer/time_label
 onready var timer = $timer
@@ -45,6 +48,9 @@ var remaining_len = -1
 # Number of clusters harvested
 var harvested = 0
 
+# Number of skips the user has
+var skips_left = 3
+
 func _ready():
 	
 	# Add plunger_btn scene
@@ -52,7 +58,10 @@ func _ready():
 	plunger.rect_position = PLUNGER_COORDS
 	$ui_layer.call_deferred("add_child", plunger)
 	clusters = [plunger]
-
+	
+	# Connect buttons to functions
+	skip_btn.connect("pressed", self, "pass_level")
+	
 	# Set up timer 
 	time_label.text = str("%3.2f" % GAME_LENGTH)
 	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
@@ -232,3 +241,18 @@ func check_solution():
 		
 			# Number of clusters increases as more flowers are harvested
 			generate_clusters(randi() % 3 + 2 * (harvested / 8) + 2)
+
+# Skip the current level
+func pass_level():
+	
+	skips_left -= 1
+	
+	# Change the icon for the pass button
+	if skips_left == 0:
+		skip_btn.visible = false
+	else:
+		skip_btn.texture_normal = load("res://assets/icons/skip%d.png" % skips_left)
+	
+	# Clear level and generate a new one
+	clear_level()
+	generate_clusters(randi() % 3 + 2 * (harvested / 8) + 2)
