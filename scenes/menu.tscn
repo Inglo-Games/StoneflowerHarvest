@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/images/background_grass.jpg" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/jrock_stag_144_5.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/menu.theme" type="Theme" id=4]
-[ext_resource path="res://assets/audio/StoneflowerHarvest.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/StoneflowerHarvest.ogg" type="AudioStream" id=5]
 
 [node name="menu" type="Control"]
 anchor_right = 1.0
@@ -48,24 +48,24 @@ __meta__ = {
 }
 
 [node name="play_btn" type="Button" parent="container"]
-margin_top = 314.0
+margin_top = 227.0
 margin_right = 1420.0
-margin_bottom = 334.0
+margin_bottom = 305.0
 text = "PLAY GAME"
 
 [node name="tut_btn" type="Button" parent="container"]
-margin_top = 430.0
+margin_top = 401.0
 margin_right = 1420.0
-margin_bottom = 450.0
+margin_bottom = 479.0
 text = "TUTORIAL"
 
 [node name="quit_btn" type="Button" parent="container"]
-margin_top = 546.0
+margin_top = 575.0
 margin_right = 1420.0
-margin_bottom = 566.0
+margin_bottom = 653.0
 text = "QUIT"
 
 [node name="menu_audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
