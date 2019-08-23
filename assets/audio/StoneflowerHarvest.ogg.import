@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/StoneflowerHarvest.ogg-e7d218314c3a9c00bf0d5e8433eed616.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/StoneflowerHarvest.ogg"
+dest_files=[ "res://.import/StoneflowerHarvest.ogg-e7d218314c3a9c00bf0d5e8433eed616.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
