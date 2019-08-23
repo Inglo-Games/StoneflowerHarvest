@@ -29,11 +29,16 @@ onready var skip_btn = $ui_layer/ui_btns/skip_btn
 onready var length_label = $ui_layer/length_label
 onready var time_label = $ui_layer/time_label
 onready var timer = $timer
-onready var sfx = $sfx
+onready var sfx_expl = $sfx_expl
+onready var sfx_conn = $sfx_conn
+onready var sfx_reel = $sfx_reel
 var plunger
 
 # Keep track of whether we're in the tutorial or not
 var is_tutorial = false
+
+# Keep track of mode -- true places lines; false removes them
+var line_mode = true
 
 # List of all flower clusters in the level
 var clusters = []
@@ -66,9 +71,8 @@ func _ready():
 	time_label.text = str("%3.2f" % GAME_LENGTH)
 	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
 	timer.connect("timeout", self, "_on_game_timeout")
-	
+
 	randomize()
-	
 	start_timed_game()
 
 func _process(delta):
@@ -161,6 +165,9 @@ func connect_clusters(src_cluster, dest_cluster):
 	# Update remaining length
 	remaining_len -= src_cluster.rect_position.distance_to(dest_cluster.rect_position)
 	length_label.text = str("%.2f" % remaining_len)
+	
+	# Play connection sound
+	sfx_conn.play()
 
 # Calculate the shortest Hamiltonian path
 func calculate_min_path():
@@ -227,7 +234,7 @@ func check_solution():
 			cluster.fire_explosion()
 		for line in $line_layer.get_children():
 			line.destroy()
-		sfx.play()
+		sfx_expl.play()
 		
 		# Clear the old clusters once explosions are finished
 		yield(get_tree().create_timer(2.4), "timeout")
