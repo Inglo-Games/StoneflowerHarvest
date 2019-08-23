@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/flower_cluster.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/dirt.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/stem1.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/stoneflower.png" type="Texture" id=4]
 [ext_resource path="res://assets/icons/dynamite.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/stem2.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/stem3.png" type="Texture" id=7]
 
 [sub_resource type="Curve" id=1]
 max_value = 3.0
@@ -62,8 +64,8 @@ tracks/3/keys = {
 
 [node name="cluster" type="Control"]
 margin_right = 900.0
-margin_bottom = 600.0
-rect_scale = Vector2( 0.2, 0.2 )
+margin_bottom = 500.0
+rect_scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -76,20 +78,24 @@ z_index = -1
 texture = ExtResource( 2 )
 
 [node name="stem01" type="Sprite" parent="."]
-position = Vector2( 671.629, 230.583 )
+position = Vector2( 700, 200 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
 [node name="stem02" type="Sprite" parent="."]
-position = Vector2( 325.734, 5.27545 )
+position = Vector2( 350, 0 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
 [node name="stem03" type="Sprite" parent="."]
-position = Vector2( 178.174, 178.223 )
-texture = ExtResource( 3 )
+position = Vector2( 147.234, 200 )
+scale = Vector2( 0.7, 0.6 )
+texture = ExtResource( 7 )
 
 [node name="stem04" type="Sprite" parent="."]
-position = Vector2( 551.042, -45.4981 )
-texture = ExtResource( 3 )
+position = Vector2( 500, -50 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
 
 [node name="flower01" type="Sprite" parent="."]
 position = Vector2( 650, 14.7955 )
