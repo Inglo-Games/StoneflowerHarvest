@@ -14,15 +14,16 @@ __meta__ = {
 }
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 160, 20 )
+position = Vector2( 320, 20 )
+scale = Vector2( 0.8, 0.6 )
 texture = ExtResource( 2 )
 centered = false
 
 [node name="label" type="Label" parent="."]
-margin_left = 240.0
-margin_top = 120.0
-margin_right = 1700.0
-margin_bottom = 400.0
+margin_left = 380.0
+margin_top = 80.0
+margin_right = 1550.0
+margin_bottom = 250.0
 theme = ExtResource( 3 )
 align = 1
 valign = 1
