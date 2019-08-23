@@ -13,7 +13,7 @@ const SJTE = preload("sjte_alg.gd")
 const DIST_THRESHOLD = 180
 
 # Amount of time per game in seconds (non-tutorial only)
-const GAME_LENGTH = 90.0
+const GAME_LENGTH = 60.0
 
 # Positions of plunger icon and dialog boxes
 const PLUNGER_COORDS = Vector2(48, 740)
@@ -198,8 +198,6 @@ func calculate_min_path():
 	min_len = min_length
 	remaining_len = min_length
 	length_label.text = str("%.2f" % remaining_len)
-	print("Shortest path: " + str(min_path))
-	print("Length: " + str(min_length))
 
 # Get the length of a given path
 func calculate_path_length(length_table, path):
@@ -221,7 +219,6 @@ func check_solution():
 			conns.erase(curr_path[i])
 			if len(conns) > 0:
 				next = conns[0]
-		print("Current path: " + str(curr_path))
 	
 	# Check that against the saved min path
 	if curr_path == min_path:
@@ -247,7 +244,7 @@ func check_solution():
 			timer.start(timer.time_left + clusters_harvested + 1)
 		
 			# Number of clusters increases as more flowers are harvested
-			generate_clusters(randi() % 3 + 2 * log(harvested) + 4)
+			generate_clusters(randi() % 3 + floor(log(harvested)) + 3)
 
 # Skip the current level
 func pass_level():
@@ -262,4 +259,4 @@ func pass_level():
 	
 	# Clear level and generate a new one
 	clear_level()
-	generate_clusters(randi() % 3 + 2 * log(harvested) + 4)
+	generate_clusters(randi() % 3 + floor(log(harvested)) + 3)

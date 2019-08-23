@@ -85,7 +85,7 @@ margin_top = 48.0
 margin_right = -960.0
 margin_bottom = 14.0
 theme = SubResource( 3 )
-text = "90.00"
+text = "60.00"
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
