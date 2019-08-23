@@ -16,6 +16,7 @@ All code and assets are created by myself and are free to use under the MIT lice
 
 * Jugger Rock font by [Iconian Fonts](https://www.iconian.com)
 * Stone Hinge font by [Typadelic](https://www.fontspace.com/typadelic)
+* Sound effects from [Soundsnap](https://www.soundsnap.com)
 
 [game_image]: https://github.com/bwhaines/StoneflowerHarvest/raw/master/screenshots/game.png "Gameplay image"
 [title_image]: https://github.com/bwhaines/StoneflowerHarvest/raw/master/screenshots/title.png "Title screen"
