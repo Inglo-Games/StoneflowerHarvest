@@ -26,6 +26,7 @@ signal continue_tut
 onready var conn_mode_btn = $ui_layer/ui_btns/conn_mode_btn
 onready var dest_mode_btn = $ui_layer/ui_btns/destroy_mode_btn
 onready var skip_btn = $ui_layer/ui_btns/skip_btn
+onready var temp_line = $ui_layer/temp_line
 onready var length_label = $ui_layer/length_label
 onready var time_label = $ui_layer/time_label
 onready var timer = $timer
@@ -38,7 +39,10 @@ var plunger
 var is_tutorial = false
 
 # Keep track of mode -- true places lines; false removes them
-var line_mode = true
+var draw_mode = true
+
+# Track if user is actively drawing a line
+var is_drawing = false
 
 # List of all flower clusters in the level
 var clusters = []
@@ -64,6 +68,11 @@ func _ready():
 	$ui_layer.call_deferred("add_child", plunger)
 	clusters = [plunger]
 	
+	# Setup line to show while drawing
+	temp_line.add_point(Vector2(0, 0))
+	temp_line.add_point(Vector2(0, 0))
+	temp_line.visible = false
+
 	# Connect buttons to functions
 	skip_btn.connect("pressed", self, "pass_level")
 	
@@ -80,6 +89,26 @@ func _process(delta):
 	# Update timer label
 	if timer.time_left >= 0:
 		time_label.text = str("%3.2f" % timer.time_left)
+	
+	# Show dragging line
+	if is_drawing and Input.is_mouse_button_pressed(BUTTON_LEFT): 
+		temp_line.points[1] = get_viewport().get_mouse_position()
+	elif is_drawing:
+		stop_drawing()
+
+# Re-draws the line that shows the user is drawing
+func start_drawing(pos):
+	temp_line.points[0] = pos
+	temp_line.points[1] = pos
+	temp_line.visible = true
+	sfx_reel.play()
+	is_drawing = true
+
+# Function to run when player is done drawing a line
+func stop_drawing():
+	is_drawing = false
+	temp_line.visible = false
+	sfx_reel.stop()
 
 # Function to set up and begin a timed game
 func start_timed_game():

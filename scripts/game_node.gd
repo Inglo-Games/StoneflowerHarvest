@@ -13,6 +13,15 @@ var connected_nodes
 
 func _ready():
 	connected_nodes = []
+	connect("gui_input", self, "_on_game_node_clicked")
+
+# Handle mouse input
+func _on_game_node_clicked(ev):
+	# Handle click and drag
+	if ev is InputEventMouseMotion \
+			and Input.is_mouse_button_pressed(BUTTON_LEFT) \
+			and not GameRoot.is_drawing:
+		GameRoot.start_drawing(get_viewport().get_mouse_position())
 
 func get_class():
 	return "GameNode"
@@ -35,7 +44,8 @@ func can_drop_data(position, data):
 	return data.get_class() == "GameNode" \
 			and data != self \
 			and self.available_connections > 0 \
-			and data.available_connections > 0
+			and data.available_connections > 0 \
+			and GameRoot.draw_mode
 
 func drop_data(position, data):
 	GameRoot.connect_clusters(data, self)
