@@ -56,6 +56,10 @@ func drop_data(position, data):
 	data.remove_conn()
 	connected_nodes.append(data.node_id)
 	data.connected_nodes.append(node_id)
+	
+	# Prompt next tutorial step if appropriate
+	if [6, 13].has(GameRoot.step):
+		emit_signal("continue_tut")
 
 # warning-ignore:unused_argument
 func get_drag_data(position):

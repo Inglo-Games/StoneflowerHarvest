@@ -19,6 +19,8 @@ const GAME_LENGTH = 60.0
 const PLUNGER_COORDS = Vector2(48, 740)
 const DIALOG_COORDS = Vector2(0, 660)
 
+signal continue_tut
+
 # UI elements
 onready var skip_btn = $ui_layer/ui_btns/skip_btn
 onready var temp_line = $ui_layer/temp_line
@@ -276,10 +278,8 @@ func check_solution():
 			# Number of clusters increases as more flowers are harvested
 			generate_clusters(randi() % 3 + floor(log(harvested)) + 3)
 		
-		return true
-	
-	else:
-		return false
+		else:
+			emit_signal("continue_tut")
 
 # Skip the current level
 func pass_level():

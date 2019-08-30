@@ -17,12 +17,10 @@ func _ready():
 	# Set up instruction dialog window
 	dialog = DialogWindow.instance()
 	dialog.rect_position = DIALOG_COORDS
-	dialog.connect("continue_tut", self, "_on_next_step")
 	dialog_label = dialog.get_node("label")
 	$ui_layer.add_child(dialog)
 	
-	# Add plunger_btn and set it to tutorial-specific script
-	plunger.set_script(TutorialPlunger)
+	dialog.connect("continue_tut", self, "_on_next_step")
 	plunger.connect("continue_tut", self, "_on_next_step")
 	
 	# Make unused icons inivible
@@ -32,6 +30,7 @@ func _ready():
 	# Only have one cluster initially
 	generate_clusters(1)
 	
+	connect("continue_tut", self, "_on_next_step")
 	_on_next_step()
 
 # Overriding these functions to prevent timer from running
@@ -44,10 +43,9 @@ func start_timed_game():
 # Generate some special cluster nodes for the tutorial
 func generate_clusters(num):
 	
-	# Generate special tutorial clusters
+	# Generate clusters and connect them to tutorial signal
 	for i in range(num):
 		var new_cluster = Cluster.instance()
-		new_cluster.set_script(TutorialCluster)
 		new_cluster.rect_position = rand_coords()
 		new_cluster.set_id(i+1)
 		new_cluster.connect("continue_tut", self, "_on_next_step")
@@ -82,7 +80,6 @@ func _on_next_step():
 		7:
 			dialog.visible = false
 		8:
-			yield(get_tree().create_timer(2.2), "timeout")
 			display_dialog("Oh, you're a natural!  Excellent work!  Now let's move on to the next site.")
 		9:
 			# Generate new level with 2 clusters
@@ -103,7 +100,6 @@ func _on_next_step():
 		16:
 			dialog.visible = false
 		17:
-			yield(get_tree().create_timer(2.2), "timeout")
 			display_dialog("Nicely done!")
 		18:
 			generate_clusters(2)
