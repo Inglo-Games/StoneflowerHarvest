@@ -35,6 +35,7 @@ func _ready():
 	_on_next_step()
 
 # Overriding these functions to prevent timer from running
+# warning-ignore:unused_argument
 func _process(delta):
 	pass
 func start_timed_game():

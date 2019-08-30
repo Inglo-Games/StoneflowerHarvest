@@ -42,12 +42,14 @@ func add_connection():
 	else:
 		return false
 
+# warning-ignore:unused_argument
 func can_drop_data(position, data):
 	return data.get_class() == "GameNode" \
 			and data != self \
 			and self.available_connections > 0 \
 			and data.available_connections > 0
 
+# warning-ignore:unused_argument
 func drop_data(position, data):
 	GameRoot.connect_clusters(data, self)
 	self.remove_conn()
@@ -55,5 +57,6 @@ func drop_data(position, data):
 	connected_nodes.append(data.node_id)
 	data.connected_nodes.append(node_id)
 
+# warning-ignore:unused_argument
 func get_drag_data(position):
 	return self

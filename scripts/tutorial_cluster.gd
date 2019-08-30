@@ -1,6 +1,7 @@
 extends Cluster
 
 # Special drop_data function that interacts with tutorial
+# warning-ignore:unused_argument
 func drop_data(position, data):
 	GameRoot.connect_clusters(data, self)
 	self.remove_conn()

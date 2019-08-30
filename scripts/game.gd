@@ -19,10 +19,7 @@ const GAME_LENGTH = 60.0
 const PLUNGER_COORDS = Vector2(48, 740)
 const DIALOG_COORDS = Vector2(0, 660)
 
-signal add_length
-
 # UI elements
-onready var dest_mode_btn = $ui_layer/ui_btns/destroy_mode_btn
 onready var skip_btn = $ui_layer/ui_btns/skip_btn
 onready var temp_line = $ui_layer/temp_line
 onready var length_label = $ui_layer/length_label
@@ -79,6 +76,7 @@ func _ready():
 	randomize()
 	start_timed_game()
 
+# warning-ignore:unused_argument
 func _process(delta):
 	
 	# Update timer label
