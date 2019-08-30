@@ -23,7 +23,6 @@ const DIALOG_COORDS = Vector2(0, 660)
 signal continue_tut
 
 # UI elements
-onready var conn_mode_btn = $ui_layer/ui_btns/conn_mode_btn
 onready var dest_mode_btn = $ui_layer/ui_btns/destroy_mode_btn
 onready var skip_btn = $ui_layer/ui_btns/skip_btn
 onready var temp_line = $ui_layer/temp_line
@@ -37,9 +36,6 @@ var plunger
 
 # Keep track of whether we're in the tutorial or not
 var is_tutorial = false
-
-# Keep track of mode -- true places lines; false removes them
-var draw_mode = true
 
 # Track if user is actively drawing a line
 var is_drawing = false
