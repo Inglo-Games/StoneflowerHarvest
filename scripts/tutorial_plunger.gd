@@ -16,7 +16,7 @@ func _on_mouse_event(ev):
 		GameRoot.check_solution()
 		
 		# Prompt next tutorial step if appropriate
-		if [8, 17].has(GameRoot.step):
+		if [8, 17, 22].has(GameRoot.step):
 			GameRoot.emit_signal("continue_tut")
 
 # Special drop_data function that interacts with tutorial

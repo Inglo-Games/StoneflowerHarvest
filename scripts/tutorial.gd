@@ -93,7 +93,7 @@ func _on_next_step():
 		12:
 			dialog.visible = false
 		13:
-			display_dialog("The last thing you'll need to remember is detonation cord is expensive.")
+			display_dialog("The next thing you'll need to remember is detonation cord is expensive.")
 		14:
 			display_dialog("The plunger is programmed to only work if you're using as little as possible, so plan your connections carefully.")
 		15:
@@ -101,8 +101,20 @@ func _on_next_step():
 		16:
 			dialog.visible = false
 		17:
-			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
+			yield(get_tree().create_timer(2.2), "timeout")
+			display_dialog("Nicely done!")
 		18:
+			generate_clusters(2)
+			display_dialog("Final thing: if you make a mistake, you can remove a connection.")
+		19:
+			display_dialog("Just double click on the connection you want to remove!")
+		20:
+			display_dialog("If the whole thing is wrong, hit that eraser icon to get rid of everything.")
+		21:
+			dialog.visible = false
+		22:
+			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
+		23:
 			clear_ui_and_return()
 	
 	step += 1
