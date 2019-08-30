@@ -44,8 +44,7 @@ func can_drop_data(position, data):
 	return data.get_class() == "GameNode" \
 			and data != self \
 			and self.available_connections > 0 \
-			and data.available_connections > 0 \
-			and GameRoot.draw_mode
+			and data.available_connections > 0
 
 func drop_data(position, data):
 	GameRoot.connect_clusters(data, self)
