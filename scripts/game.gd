@@ -19,8 +19,9 @@ const GAME_LENGTH = 60.0
 const PLUNGER_COORDS = Vector2(48, 740)
 const DIALOG_COORDS = Vector2(0, 660)
 
-# Signal to continue tutorial
+# Signals used in game
 signal continue_tut
+signal add_length
 
 # UI elements
 onready var dest_mode_btn = $ui_layer/ui_btns/destroy_mode_btn
@@ -76,7 +77,9 @@ func _ready():
 	time_label.text = str("%3.2f" % GAME_LENGTH)
 	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
 	timer.connect("timeout", self, "_on_game_timeout")
-
+	
+	connect("add_length", self, "_on_add_length")
+	
 	randomize()
 	start_timed_game()
 
@@ -110,6 +113,11 @@ func stop_drawing():
 func start_timed_game():
 	timer.start(GAME_LENGTH)
 	generate_clusters(randi() % 2 + 3)
+
+# Re-add a removed connection's length to total
+func _on_add_length(length):
+	remaining_len += length
+	length_label.text = str("%.2f" % remaining_len)
 
 # End a timed game 
 func _on_game_timeout():

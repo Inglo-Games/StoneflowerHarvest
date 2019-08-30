@@ -19,6 +19,11 @@ func _input(ev):
 				and ev.global_position.y > top_bound \
 				and ev.global_position.y < bottom_bound:
 			print("Clicked on connection between %d and %d" % [nodes[0].node_id, nodes[1].node_id])
+			
+			# Add connection length back to counter
+			var length = nodes[0].rect_position.distance_to(nodes[1].rect_position)
+			get_node("/root/game_world").emit_signal("add_length", length)
+			
 			destroy()
 
 # Set up connection line
