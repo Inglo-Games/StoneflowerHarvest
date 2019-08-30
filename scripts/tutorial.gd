@@ -17,11 +17,13 @@ func _ready():
 	# Set up instruction dialog window
 	dialog = DialogWindow.instance()
 	dialog.rect_position = DIALOG_COORDS
+	dialog.connect("continue_tut", self, "_on_next_step")
 	dialog_label = dialog.get_node("label")
 	$ui_layer.add_child(dialog)
 	
 	# Add plunger_btn and set it to tutorial-specific script
 	plunger.set_script(TutorialPlunger)
+	plunger.connect("continue_tut", self, "_on_next_step")
 	
 	# Make unused icons inivible
 	$ui_layer/time_label.visible = false
@@ -30,9 +32,7 @@ func _ready():
 	# Only have one cluster initially
 	generate_clusters(1)
 	
-	# Listen for tutorial signal and begin
-	connect("continue_tut", self, "_on_next_step")
-	emit_signal("continue_tut")
+	_on_next_step()
 
 # Overriding these functions to prevent timer from running
 func _process(delta):
@@ -49,6 +49,7 @@ func generate_clusters(num):
 		new_cluster.set_script(TutorialCluster)
 		new_cluster.rect_position = rand_coords()
 		new_cluster.set_id(i+1)
+		new_cluster.connect("continue_tut", self, "_on_next_step")
 		clusters.append(new_cluster)
 		call_deferred("add_child", new_cluster)
 	

@@ -19,8 +19,6 @@ const GAME_LENGTH = 60.0
 const PLUNGER_COORDS = Vector2(48, 740)
 const DIALOG_COORDS = Vector2(0, 660)
 
-# Signals used in game
-signal continue_tut
 signal add_length
 
 # UI elements
@@ -77,8 +75,6 @@ func _ready():
 	time_label.text = str("%3.2f" % GAME_LENGTH)
 	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
 	timer.connect("timeout", self, "_on_game_timeout")
-	
-	connect("add_length", self, "_on_add_length")
 	
 	randomize()
 	start_timed_game()
@@ -195,6 +191,9 @@ func connect_clusters(src_cluster, dest_cluster):
 	cable._init_(src_cluster, dest_cluster)
 	$line_layer.call_deferred("add_child", cable)
 	
+	# Set up signal for removing connection
+	cable.connect("add_length", self, "_on_add_length")
+	
 	# Update remaining length
 	remaining_len -= src_cluster.rect_position.distance_to(dest_cluster.rect_position)
 	length_label.text = str("%.2f" % remaining_len)
@@ -278,6 +277,11 @@ func check_solution():
 		
 			# Number of clusters increases as more flowers are harvested
 			generate_clusters(randi() % 3 + floor(log(harvested)) + 3)
+		
+		return true
+	
+	else:
+		return false
 
 # Skip the current level
 func pass_level():

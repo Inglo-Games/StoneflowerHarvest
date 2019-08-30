@@ -13,11 +13,11 @@ func _on_mouse_event(ev):
 	
 	# React to click release
 	if ev is InputEventMouseButton and not ev.pressed:
-		GameRoot.check_solution()
+		var solved = GameRoot.check_solution()
 		
 		# Prompt next tutorial step if appropriate
-		if [8, 17, 22].has(GameRoot.step):
-			GameRoot.emit_signal("continue_tut")
+		if solved and [8, 17, 22].has(GameRoot.step):
+			emit_signal("continue_tut")
 
 # Special drop_data function that interacts with tutorial
 func drop_data(position, data):
@@ -29,4 +29,4 @@ func drop_data(position, data):
 	
 	# Prompt next tutorial step if appropriate
 	if [6, 13].has(GameRoot.step):
-		GameRoot.emit_signal("continue_tut")
+		emit_signal("continue_tut")

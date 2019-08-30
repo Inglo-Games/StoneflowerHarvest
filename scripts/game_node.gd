@@ -4,6 +4,8 @@ extends Control
 # (i.e., the plunger icon and flower clusters)
 class_name GameNode
 
+signal continue_tut
+
 onready var GameRoot = get_node("/root/game_world")
 
 var available_connections

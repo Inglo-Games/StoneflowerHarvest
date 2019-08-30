@@ -3,6 +3,8 @@ extends Line2D
 # This class defines the behavior of a connection between two patches
 class_name Connection
 
+signal add_length
+
 # List of clusters/plunger this line connects
 var nodes = []
 
@@ -18,11 +20,10 @@ func _input(ev):
 				and ev.global_position.x < right_bound \
 				and ev.global_position.y > top_bound \
 				and ev.global_position.y < bottom_bound:
-			print("Clicked on connection between %d and %d" % [nodes[0].node_id, nodes[1].node_id])
 			
 			# Add connection length back to counter
 			var length = nodes[0].rect_position.distance_to(nodes[1].rect_position)
-			get_node("/root/game_world").emit_signal("add_length", length)
+			emit_signal("add_length", length)
 			
 			destroy()
 
