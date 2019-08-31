@@ -1,18 +1,12 @@
 extends GameWorld
 
-const TutorialCluster = preload("res://scripts/tutorial_cluster.gd")
-const TutorialPlunger = preload("res://scripts/tutorial_plunger.gd")
-
 # Dialog window and label to give instructions to user
 var dialog
 var dialog_label
 
-# Keep track of what step the user is on
-var step = 0
-
 func _ready():
 	
-	is_tutorial = true
+	tut_step = 0
 	
 	# Set up instruction dialog window
 	dialog = DialogWindow.instance()
@@ -62,7 +56,7 @@ func display_dialog(text):
 
 # Display a new action based on previous one
 func _on_next_step():
-	match step:
+	match tut_step:
 		0:
 			display_dialog("Ah! You must be the new worker!")
 		1:
@@ -115,4 +109,4 @@ func _on_next_step():
 		23:
 			clear_ui_and_return()
 	
-	step += 1
+	tut_step += 1

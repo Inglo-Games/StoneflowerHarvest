@@ -58,7 +58,7 @@ func drop_data(position, data):
 	data.connected_nodes.append(node_id)
 	
 	# Prompt next tutorial step if appropriate
-	if [6, 13].has(GameRoot.step):
+	if [6, 13].has(GameRoot.tut_step):
 		emit_signal("continue_tut")
 
 # warning-ignore:unused_argument

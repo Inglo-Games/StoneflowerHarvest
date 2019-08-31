@@ -32,8 +32,8 @@ onready var sfx_conn = $sfx_conn
 onready var sfx_reel = $sfx_reel
 var plunger
 
-# Keep track of whether we're in the tutorial or not
-var is_tutorial = false
+# Keep track of what step of the tutorial the user is on
+var tut_step = -1
 
 # Track if user is actively drawing a line
 var is_drawing = false
@@ -270,7 +270,7 @@ func check_solution():
 		clear_level()
 		
 		# If not in the tutorial, generate new clusters
-		if not is_tutorial:
+		if tut_step == -1:
 			
 			# Add time to game timer
 			timer.start(timer.time_left + clusters_harvested + 1)
