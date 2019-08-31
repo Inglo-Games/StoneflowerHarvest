@@ -3,10 +3,10 @@
 [ext_resource path="res://scripts/flower_cluster.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/dirt.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/stem1.png" type="Texture" id=3]
-[ext_resource path="res://assets/images/stoneflower.png" type="Texture" id=4]
-[ext_resource path="res://assets/icons/dynamite.png" type="Texture" id=5]
-[ext_resource path="res://assets/images/stem2.png" type="Texture" id=6]
-[ext_resource path="res://assets/images/stem3.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/stem3.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/stem2.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/stoneflower.png" type="Texture" id=6]
+[ext_resource path="res://assets/icons/dynamite.png" type="Texture" id=7]
 
 [sub_resource type="Curve" id=1]
 max_value = 3.0
@@ -63,8 +63,8 @@ tracks/3/keys = {
 }
 
 [node name="cluster" type="Control"]
-margin_right = 900.0
-margin_bottom = 500.0
+margin_right = 849.0
+margin_bottom = 427.0
 rect_scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -72,59 +72,59 @@ __meta__ = {
 }
 
 [node name="dirt" type="Sprite" parent="."]
-position = Vector2( 450, 250 )
+position = Vector2( 425.699, 214.579 )
 scale = Vector2( 0.9, 0.9 )
 z_index = -1
 texture = ExtResource( 2 )
 
 [node name="stem01" type="Sprite" parent="."]
-position = Vector2( 700, 200 )
+position = Vector2( 675.699, 164.579 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
 [node name="stem02" type="Sprite" parent="."]
-position = Vector2( 350, 0 )
+position = Vector2( 325.699, -35.4213 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
 [node name="stem03" type="Sprite" parent="."]
-position = Vector2( 147.234, 200 )
+position = Vector2( 122.933, 164.579 )
 scale = Vector2( 0.7, 0.6 )
-texture = ExtResource( 7 )
+texture = ExtResource( 4 )
 
 [node name="stem04" type="Sprite" parent="."]
-position = Vector2( 500, -50 )
+position = Vector2( 475.699, -85.4213 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 6 )
-
-[node name="flower01" type="Sprite" parent="."]
-position = Vector2( 650, 14.7955 )
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="flower02" type="Sprite" parent="."]
-position = Vector2( 150, -29.6313 )
-rotation = -0.00428766
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="flower03" type="Sprite" parent="."]
-position = Vector2( 300, -224.792 )
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="flower04" type="Sprite" parent="."]
-position = Vector2( 550, -281.912 )
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="dynamite" type="Sprite" parent="."]
-position = Vector2( 423.319, 267.632 )
-scale = Vector2( 1.92316, 1.8925 )
 texture = ExtResource( 5 )
 
+[node name="flower01" type="Sprite" parent="."]
+position = Vector2( 625.698, -20.6258 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="flower02" type="Sprite" parent="."]
+position = Vector2( 125.699, -65.0527 )
+rotation = -0.00428766
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="flower03" type="Sprite" parent="."]
+position = Vector2( 275.699, -260.213 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="flower04" type="Sprite" parent="."]
+position = Vector2( 525.699, -317.333 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="dynamite" type="Sprite" parent="."]
+position = Vector2( 399.018, 232.211 )
+scale = Vector2( 1.92316, 1.8925 )
+texture = ExtResource( 7 )
+
 [node name="dust_particles" type="CPUParticles2D" parent="."]
-position = Vector2( 450, 341.723 )
+position = Vector2( 425.699, 306.302 )
 rotation = -1.57079
 z_index = 1
 emitting = false
@@ -144,7 +144,7 @@ scale_amount_curve = SubResource( 1 )
 color_ramp = SubResource( 2 )
 
 [node name="expl_particles" type="CPUParticles2D" parent="."]
-position = Vector2( 450, 341.723 )
+position = Vector2( 425.699, 306.302 )
 rotation = -1.57079
 z_index = 1
 emitting = false
