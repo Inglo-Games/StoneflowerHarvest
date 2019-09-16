@@ -80,15 +80,18 @@ func _on_next_step():
 			display_dialog("So what are you waiting for?  Click and drag to connect them!!")
 		5:
 			dialog.visible = false
+			foreman.visible = false
 		6:
 			display_dialog("If the connection is good, push down on the plunger and show those flowers who's boss!")
 			foreman.texture = foreman_left
+			foreman.visible = true
 		7:
 			dialog.visible = false
-			foreman.texture = foreman_idle
+			foreman.visible = false
 		8:
 			display_dialog("Oh, you're a natural!  Excellent work!  Now let's move on to the next site.")
 			foreman.texture = foreman_happy
+			foreman.visible = true
 		9:
 			# Generate new level with 2 clusters
 			generate_clusters(2)
@@ -100,8 +103,10 @@ func _on_next_step():
 			display_dialog("Except for the plunger -- it can only have one line coming out!")
 		12:
 			dialog.visible = false
+			foreman.visible = false
 		13:
 			display_dialog("The next thing you'll need to remember is detonation cord is expensive.")
+			foreman.visible = true
 		14:
 			display_dialog("The plunger is programmed to only work if you're using as little as possible, so plan your connections carefully.")
 		15:
@@ -109,10 +114,11 @@ func _on_next_step():
 			foreman.texture = foreman_corner
 		16:
 			dialog.visible = false
-			foreman.texture = foreman_idle
+			foreman.visible = false
 		17:
 			display_dialog("Nicely done!")
 			foreman.texture = foreman_happy
+			foreman.visible = true
 		18:
 			generate_clusters(2)
 			display_dialog("Final thing: if you make a mistake, you can remove a connection.")
@@ -124,10 +130,11 @@ func _on_next_step():
 			foreman.texture = foreman_up
 		21:
 			dialog.visible = false
-			foreman.texture = foreman_idle
+			foreman.visible = false
 		22:
 			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
 			foreman.texture = foreman_happy
+			foreman.visible = true
 		23:
 			clear_ui_and_return()
 	
