@@ -8,11 +8,13 @@ func _ready():
 	
 	tut_step = 0
 	
-	# Set up instruction dialog window
+	# Set up instruction dialog and foreman character
 	dialog = DialogWindow.instance()
-	dialog.rect_position = DIALOG_COORDS
+	dialog.rect_position = TUTORIAL_DIALOG_COORDS
+	dialog.rect_scale = Vector2(0.85, 0.85)
 	dialog_label = dialog.get_node("label")
 	$ui_layer.add_child(dialog)
+	$ui_layer/foreman.visible = true
 	
 	dialog.connect("continue_tut", self, "_on_next_step")
 	plunger.connect("continue_tut", self, "_on_next_step")

@@ -17,7 +17,8 @@ const GAME_LENGTH = 60.0
 
 # Positions of plunger icon and dialog boxes
 const PLUNGER_COORDS = Vector2(48, 740)
-const DIALOG_COORDS = Vector2(0, 660)
+const TUTORIAL_DIALOG_COORDS = Vector2(0, 720)
+const ENDGAME_DIALOG_COORDS = Vector2(0, 660)
 
 signal continue_tut
 
@@ -123,7 +124,7 @@ func _on_game_timeout():
 	
 	# Show dialog telling user their score
 	var dialog = DialogWindow.instance()
-	dialog.rect_position = DIALOG_COORDS
+	dialog.rect_position = ENDGAME_DIALOG_COORDS
 	dialog.get_node("label").text = "Finished!\nTotal clusters harvested: %d" % harvested
 	$ui_layer.call_deferred("add_child", dialog)
 	dialog.connect("gui_input", self, "_on_end_dialog_mouse")
@@ -168,6 +169,7 @@ func generate_clusters(num):
 
 # Generate a set of random coordinates within the screen
 func rand_coords():
+	
 	var win = get_viewport().size
 	var temp_pos = Vector2(rand_range(0.05, 0.8) * win.x, rand_range(0.2, 0.7) * win.y)
 	

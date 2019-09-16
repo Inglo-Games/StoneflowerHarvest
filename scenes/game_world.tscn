@@ -1,16 +1,17 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/background_grass.jpg" type="Texture" id=2]
-[ext_resource path="res://assets/images/cord_pattern.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/cord_pattern.tres" type="Texture" id=3]
 [ext_resource path="res://assets/icons/eraser.png" type="Texture" id=4]
 [ext_resource path="res://scripts/destroy_btn.gd" type="Script" id=5]
 [ext_resource path="res://assets/icons/skip3.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/stonehenge60_6.tres" type="DynamicFont" id=7]
-[ext_resource path="res://assets/audio/HarvestDay.ogg" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/explosion.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/audio/connection.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/audio/reel.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/images/foreman/foreman_idle.png" type="Texture" id=8]
+[ext_resource path="res://assets/audio/HarvestDay.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/explosion.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/connection.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/reel.wav" type="AudioStream" id=12]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -94,23 +95,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="foreman" type="Sprite" parent="ui_layer"]
+visible = false
+position = Vector2( 1640.64, 902.444 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 8 )
+
 [node name="timer" type="Timer" parent="."]
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 volume_db = -25.0
 autoplay = true
 mix_target = 2
 
 [node name="sfx_expl" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 volume_db = -15.0
 
 [node name="sfx_conn" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 volume_db = -10.0
 
 [node name="sfx_reel" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = -25.0
 pitch_scale = 0.7
