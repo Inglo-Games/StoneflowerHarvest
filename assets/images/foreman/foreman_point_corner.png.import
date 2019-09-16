@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/foreman_point_left.png-da305639a1d6a01fc03a4b996c6db7fd.stex"
+path="res://.import/foreman_point_corner.png-4b5be813867ec76da94f45d23d2b2b91.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/foreman/foreman_point_left.png"
-dest_files=[ "res://.import/foreman_point_left.png-da305639a1d6a01fc03a4b996c6db7fd.stex" ]
+source_file="res://assets/images/foreman/foreman_point_corner.png"
+dest_files=[ "res://.import/foreman_point_corner.png-4b5be813867ec76da94f45d23d2b2b91.stex" ]
 
 [params]
 

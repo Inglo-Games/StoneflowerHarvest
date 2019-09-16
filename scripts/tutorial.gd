@@ -1,5 +1,14 @@
 extends GameWorld
 
+# Preload all foreman images
+onready var foreman_idle = load("res://assets/images/foreman/foreman_idle.png")
+onready var foreman_happy = load("res://assets/images/foreman/foreman_happy.png")
+onready var foreman_left = load("res://assets/images/foreman/foreman_point_left.png")
+onready var foreman_corner = load("res://assets/images/foreman/foreman_point_corner.png")
+onready var foreman_up = load("res://assets/images/foreman/foreman_point_up.png")
+
+onready var foreman = $ui_layer/foreman
+
 # Dialog window and label to give instructions to user
 var dialog
 var dialog_label
@@ -14,7 +23,7 @@ func _ready():
 	dialog.rect_scale = Vector2(0.85, 0.85)
 	dialog_label = dialog.get_node("label")
 	$ui_layer.add_child(dialog)
-	$ui_layer/foreman.visible = true
+	foreman.visible = true
 	
 	dialog.connect("continue_tut", self, "_on_next_step")
 	plunger.connect("continue_tut", self, "_on_next_step")
@@ -73,14 +82,18 @@ func _on_next_step():
 			dialog.visible = false
 		6:
 			display_dialog("If the connection is good, push down on the plunger and show those flowers who's boss!")
+			foreman.texture = foreman_left
 		7:
 			dialog.visible = false
+			foreman.texture = foreman_idle
 		8:
 			display_dialog("Oh, you're a natural!  Excellent work!  Now let's move on to the next site.")
+			foreman.texture = foreman_happy
 		9:
 			# Generate new level with 2 clusters
 			generate_clusters(2)
 			display_dialog("The next lesson: every bundle of dynamite can only have one line coming in and one line going out.")
+			foreman.texture = foreman_idle
 		10:
 			display_dialog("Two connections is all you get.")
 		11:
@@ -93,21 +106,28 @@ func _on_next_step():
 			display_dialog("The plunger is programmed to only work if you're using as little as possible, so plan your connections carefully.")
 		15:
 			display_dialog("The counter in the top left will tell you how much cord you have left to use.")
+			foreman.texture = foreman_corner
 		16:
 			dialog.visible = false
+			foreman.texture = foreman_idle
 		17:
 			display_dialog("Nicely done!")
+			foreman.texture = foreman_happy
 		18:
 			generate_clusters(2)
 			display_dialog("Final thing: if you make a mistake, you can remove a connection.")
+			foreman.texture = foreman_idle
 		19:
 			display_dialog("Just double click on the connection you want to remove!")
 		20:
 			display_dialog("If the whole thing is wrong, hit that eraser icon to get rid of everything.")
+			foreman.texture = foreman_up
 		21:
 			dialog.visible = false
+			foreman.texture = foreman_idle
 		22:
 			display_dialog("Well, I think that's all I can teach you.  Good luck, and get us some delicious flowers!")
+			foreman.texture = foreman_happy
 		23:
 			clear_ui_and_return()
 	
