@@ -296,4 +296,7 @@ func pass_level():
 	
 	# Clear level and generate a new one
 	clear_level()
-	generate_clusters(randi() % 3 + floor(log(harvested)) + 3)
+	var num_of_new_clusters = randi() % 3 + floor(log(harvested)) + 3
+	if harvested == 0:
+		num_of_new_clusters = randi() % 3 + 2
+	generate_clusters(num_of_new_clusters)
