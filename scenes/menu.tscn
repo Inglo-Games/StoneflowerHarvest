@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/menu.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/background_grass.jpg" type="Texture" id=3]
-[ext_resource path="res://assets/fonts/jrock_stag_144_5.tres" type="DynamicFont" id=4]
-[ext_resource path="res://assets/audio/StoneflowerHarvest.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/images/foreman/foreman_idle.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/dirt.png" type="Texture" id=5]
+[ext_resource path="res://scenes/cluster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/fonts/jrock_stag_144_5.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/audio/StoneflowerHarvest.ogg" type="AudioStream" id=8]
 
 [node name="menu" type="Control"]
 anchor_right = 1.0
@@ -20,11 +23,28 @@ position = Vector2( 0, -800 )
 texture = ExtResource( 3 )
 centered = false
 
+[node name="foreman" type="Sprite" parent="."]
+position = Vector2( 1588.44, 818.333 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="dirt" type="Sprite" parent="."]
+position = Vector2( 338.88, 658.333 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="cluster" parent="." instance=ExtResource( 6 )]
+margin_left = 139.491
+margin_top = 545.501
+margin_right = 988.491
+margin_bottom = 972.501
+rect_scale = Vector2( 0.5, 0.5 )
+
 [node name="title" type="Label" parent="."]
 anchor_right = 1.0
 margin_top = 80.0
 margin_bottom = 152.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 7 )
 text = "STONEFLOWER HARVEST"
 align = 1
 valign = 1
@@ -49,17 +69,17 @@ __meta__ = {
 }
 
 [node name="play_btn" type="Button" parent="container"]
-margin_top = 236.0
+margin_top = 182.0
 margin_right = 1420.0
-margin_bottom = 308.0
+margin_bottom = 290.0
 focus_neighbour_bottom = NodePath("../tut_btn")
 focus_next = NodePath("../tut_btn")
 text = "PLAY GAME"
 
 [node name="tut_btn" type="Button" parent="container"]
-margin_top = 404.0
+margin_top = 386.0
 margin_right = 1420.0
-margin_bottom = 476.0
+margin_bottom = 494.0
 focus_neighbour_top = NodePath("../play_btn")
 focus_neighbour_bottom = NodePath("../quit_btn")
 focus_next = NodePath("../quit_btn")
@@ -67,14 +87,14 @@ focus_previous = NodePath("../play_btn")
 text = "TUTORIAL"
 
 [node name="quit_btn" type="Button" parent="container"]
-margin_top = 572.0
+margin_top = 590.0
 margin_right = 1420.0
-margin_bottom = 644.0
+margin_bottom = 698.0
 focus_neighbour_top = NodePath("../tut_btn")
 focus_previous = NodePath("../tut_btn")
 text = "QUIT"
 
 [node name="menu_audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 8 )
 volume_db = -15.0
 autoplay = true
