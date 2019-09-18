@@ -4,6 +4,18 @@ extends Node
 # with Even's speedup.
 # https://en.wikipedia.org/wiki/Steinhaus-Johnson-Trotter_algorithm
 
+# Generate a list of all permutations from N=1 to N=9
+# This should be pre-computed before exporting the game
+# Run this by adding this script as an auto-loaded global object
+func _ready():
+	for index in range(9):
+		var path = "res://scripts/util/iter_%d" % (index+1)
+		var perms = sjte(index + 1)
+		var file = File.new()
+		file.open(path, file.WRITE)
+		file.store_var(perms)
+		file.close()
+
 # SJT algorithm; returns a list of lists representing all permutations of
 # numbers from 1 to N
 static func sjte(N):
@@ -20,7 +32,9 @@ static func sjte(N):
 		indicies.append(i+2)
 	
 	# Add the initial permutation to the list
-	permutations.append(indicies.duplicate(true))
+	var indicies_dup = indicies.duplicate(true)
+	indicies_dup.push_front(0)
+	permutations.append(indicies_dup)
 	
 	# Continue as long as there is a "mobile" (not undirected) number
 	var has_mobile = true
@@ -57,8 +71,10 @@ static func sjte(N):
 				else:
 					directions[i] = -1
 		
-		# Append a copy of the current permutation to list
-		permutations.append(indicies.duplicate(true))
+		# Append a copy of the current permutation to list with 0 prepended
+		var new_list = indicies.duplicate(true)
+		new_list.push_front(0)
+		permutations.append(new_list)
 	
 	# When algorithm terminates, return list of permuatations
 	return permutations

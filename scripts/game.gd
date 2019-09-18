@@ -8,7 +8,6 @@ const Plunger = preload("res://scenes/plunger_btn.tscn")
 const PausePopup = preload("res://scenes/pause_popup.tscn")
 const DialogWindow = preload("res://scenes/dialog_window.tscn")
 const Connection = preload("connection.gd")
-const SJTE = preload("sjte_alg.gd")
 
 # Minimum distance allowed between clusters in pixels
 const DIST_THRESHOLD = 180
@@ -221,10 +220,11 @@ func calculate_min_path():
 			dists[i][j] = clusters[i].rect_position.distance_to(
 					clusters[j].rect_position)
 	
-	# Use Steinhaus-Johnson-Trotter alg to generate all paths
-	var permutations = SJTE.sjte(len(clusters)-1)
-	for list in permutations:
-		list.push_front(0)
+	# Retrieve list of all permutations from file
+	var perm_file = File.new()
+	perm_file.open("res://scripts/util/iter_%d" % (len(clusters)-1), perm_file.READ)
+	var permutations = perm_file.get_var()
+	perm_file.close()
 	
 	# Iterate over all paths that start at 0, keeping track of current minimum
 	var temp_min_path = []
@@ -303,7 +303,7 @@ func pass_level():
 	
 	# Clear level and generate a new one
 	clear_level()
-	var num_of_new_clusters = randi() % 3 + floor(log(harvested)) + 3
+	var num_of_new_clusters = min(randi() % 3 + floor(log(harvested)) + 3, 9)
 	if harvested == 0:
 		num_of_new_clusters = randi() % 3 + 2
 	generate_clusters(num_of_new_clusters)
