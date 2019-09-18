@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/menu.theme" type="Theme" id=1]
+[ext_resource path="res://assets/images/dialog.svg" type="Texture" id=2]
+[ext_resource path="res://scripts/pause_popup.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 663, 192 )
+margin_left = 25.0527
+margin_right = 20.0422
+margin_top = 31.7335
+margin_bottom = 23.3826
+
+[node name="pause_popup" type="PopupPanel"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1400.0
+margin_bottom = -700.0
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 1 )
+popup_exclusive = true
+script = ExtResource( 3 )
+
+[node name="vbox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0527
+margin_top = 31.7335
+margin_right = -20.0422
+margin_bottom = -23.3826
+custom_constants/separation = 48
+alignment = 1
+
+[node name="resume_btn" type="Button" parent="vbox"]
+margin_top = 30.0
+margin_right = 474.0
+margin_bottom = 138.0
+text = "RESUME"
+
+[node name="quit_btn" type="Button" parent="vbox"]
+margin_top = 186.0
+margin_right = 474.0
+margin_bottom = 294.0
+text = "QUIT"
+[connection signal="button_up" from="vbox/resume_btn" to="." method="_on_resume_pressed"]
+[connection signal="button_up" from="vbox/quit_btn" to="." method="_on_quit_pressed"]

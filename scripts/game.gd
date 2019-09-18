@@ -5,6 +5,7 @@ class_name GameWorld
 # Preload classes
 const Cluster = preload("res://scenes/cluster.tscn")
 const Plunger = preload("res://scenes/plunger_btn.tscn")
+const PausePopup = preload("res://scenes/pause_popup.tscn")
 const DialogWindow = preload("res://scenes/dialog_window.tscn")
 const Connection = preload("connection.gd")
 const SJTE = preload("sjte_alg.gd")
@@ -111,6 +112,12 @@ func start_timed_game():
 	timer.start(GAME_LENGTH)
 	generate_clusters(randi() % 2 + 3)
 
+func _on_pause_game():
+	var pause_menu = PausePopup.instance()
+	$popup_layer.add_child(pause_menu)
+	pause_menu.popup_centered()
+	get_tree().set_pause(true)
+
 # Re-add a removed connection's length to total
 func _on_add_length(length):
 	remaining_len += length
@@ -126,7 +133,7 @@ func _on_game_timeout():
 	var dialog = DialogWindow.instance()
 	dialog.rect_position = ENDGAME_DIALOG_COORDS
 	dialog.get_node("label").text = "Finished!\nTotal clusters harvested: %d" % harvested
-	$ui_layer.call_deferred("add_child", dialog)
+	$popup_layer.call_deferred("add_child", dialog)
 	dialog.connect("gui_input", self, "_on_end_dialog_mouse")
 
 # Check if user clicked on dialog to return to menu
