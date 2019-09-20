@@ -115,6 +115,7 @@ func _on_pause_game():
 	var pause_menu = PausePopup.instance()
 	$popup_layer.add_child(pause_menu)
 	pause_menu.popup_centered()
+	pause_menu.connect("quit_game", self, "clear_ui_and_return")
 	get_tree().set_pause(true)
 
 # Re-add a removed connection's length to total
@@ -222,7 +223,7 @@ func calculate_min_path():
 	
 	# Retrieve list of all permutations from file
 	var perm_file = File.new()
-	perm_file.open("res://scripts/util/iter_%d" % (len(clusters)-1), perm_file.READ)
+	perm_file.open("res://scripts/util/iter_%d.bin" % (len(clusters)-1), perm_file.READ)
 	var permutations = perm_file.get_var()
 	perm_file.close()
 	
