@@ -6,11 +6,11 @@
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 663, 192 )
-margin_left = 25.0527
+region_rect = Rect2( 64.0497, 125.163, 662.024, 192.155 )
+margin_left = 25.751
 margin_right = 20.0422
-margin_top = 31.7335
-margin_bottom = 23.3826
+margin_top = 27.8804
+margin_bottom = 23.5361
 
 [node name="pause_popup" type="PopupPanel"]
 pause_mode = 2
