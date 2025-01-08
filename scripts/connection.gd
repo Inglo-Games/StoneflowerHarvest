@@ -42,7 +42,7 @@ func _init_(src_cluster, dest_cluster):
 	set_begin_cap_mode(Line2D.LINE_CAP_ROUND)
 	set_end_cap_mode(Line2D.LINE_CAP_ROUND)
 	set_texture_mode(Line2D.LINE_TEXTURE_TILE)
-	set_texture(load("res://assets/images/cord_pattern.tres"))
+	set_texture(load("res://assets/images/cord_pattern.png"))
 
 # Destroy this connection and update clusters accordingly
 func destroy():
